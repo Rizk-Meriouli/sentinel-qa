@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sentinel QA: manual and automated software testing for startups and local businesses, led by an engineer who has worked on Arsenal FC, the European Medicines Agency, and Banco Santander. Based in João Pessoa, Brazil.">
+<title>Sentinel QA — Quality engineering that catches what breaks trust</title>
+<style>
+  :root{
+    --ink:#0B1220;
+    --slate:#141B2E;
+    --slate-2:#1B2438;
+    --line:#28324a;
+    --fog:#8993A8;
+    --bone:#F1F0EC;
+    --emerald:#2BAE7A;
+    --emerald-dim:#1c7a56;
+    --amber:#E4A64B;
+    --radius:14px;
+    --font-display:"Trebuchet MS","Century Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Consolas,"Courier New",monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.02em;}
+  .mono{font-family:var(--font-mono);}
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:18px;}
+  .brand svg{width:26px; height:26px;}
+  .navlinks{display:flex; gap:32px; font-size:14px; color:var(--fog);}
+  .navlinks a:hover{color:var(--bone);}
+  .nav-right{display:flex; align-items:center; gap:16px;}
+  .navcta{
+    background:var(--emerald); color:#08150f; font-weight:600; font-size:14px;
+    padding:10px 18px; border-radius:8px; white-space:nowrap; display:inline-flex; align-items:center;
+  }
+  .navcta .cta-short{display:none;}
+  .lang-toggle{
+    display:flex; align-items:center; gap:6px;
+    background:var(--slate-2); border:1px solid var(--line); border-radius:20px;
+    padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone);
+  }
+  .lang-toggle:hover{border-color:var(--emerald-dim);}
+  .lang-toggle .flag{font-size:15px; line-height:1;}
+  @media (max-width:600px){ .lang-toggle span.lang-label{display:none;} }
+  .menu-toggle{
+    display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
+  }
+  .menu-toggle span{width:22px; height:2px; background:var(--bone); display:block;}
+  .mobile-menu{
+    display:none; flex-direction:column; gap:2px;
+    background:var(--slate); border-bottom:1px solid var(--line);
+    padding:8px 32px 18px;
+  }
+  .mobile-menu a{padding:12px 0; font-size:15px; color:var(--bone); border-bottom:1px solid var(--line);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu.open{display:flex;}
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .menu-toggle{display:flex;}
+    .brand{font-size:16px;}
+    .navcta{font-size:12.5px; padding:9px 13px;}
+  }
+  @media (max-width:400px){
+    .navcta .cta-full{display:none;}
+    .navcta .cta-short{display:inline;}
+    .navcta{padding:9px 12px;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 80px;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--emerald); border:1px solid var(--emerald-dim); background:var(--slate-2);
+    padding:6px 12px; border-radius:20px; margin-bottom:22px;
+  }
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--emerald); box-shadow:0 0 8px var(--emerald); animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
+  .hero h1{font-size:56px; line-height:1.05; margin-bottom:22px;}
+  .hero h1 .accent{color:var(--emerald);}
+  .hero p.lead{font-size:18px; color:var(--fog); max-width:520px; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:14px; margin-bottom:40px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--emerald); color:#08150f; font-weight:600; font-size:15px;
+    padding:14px 24px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center;
+    text-align:center; white-space:nowrap; border:none; cursor:pointer;
+  }
+  .btn-secondary{
+    border:1px solid var(--line); color:var(--bone); font-weight:500; font-size:15px;
+    padding:14px 24px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center;
+    text-align:center; white-space:nowrap;
+  }
+  .credtags{display:flex; gap:10px; flex-wrap:wrap; font-family:var(--font-mono); font-size:12px; color:var(--fog);}
+  .credtags span{border:1px solid var(--line); padding:5px 10px; border-radius:6px;}
+
+  /* Terminal panel */
+  .terminal{
+    background:var(--slate); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-head{
+    display:flex; align-items:center; gap:8px; padding:12px 16px;
+    border-bottom:1px solid var(--line); background:var(--slate-2);
+  }
+  .term-head .tdot{width:9px; height:9px; border-radius:50%;}
+  .term-head span.label{margin-left:8px; font-family:var(--font-mono); font-size:12px; color:var(--fog);}
+  .term-body{padding:20px; font-family:var(--font-mono); font-size:13px; height:310px; overflow:hidden;}
+  .term-line{display:flex; gap:10px; margin-bottom:12px; opacity:0; animation:fadeIn 0.4s forwards;}
+  .term-line .status{font-weight:600;}
+  .status.pass{color:var(--emerald);}
+  .status.flag{color:var(--amber);}
+  .term-line .path{color:var(--fog);}
+  @keyframes fadeIn{to{opacity:1;}}
+  .term-summary{
+    margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
+    color:var(--fog); font-size:12px;
+  }
+  .term-summary b{color:var(--bone);}
+
+  @media (max-width:900px){
+    .hero{padding:60px 0;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+  }
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:26px 0;
+  }
+  .trust .wrap{
+    display:flex; align-items:center; justify-content:center; gap:40px;
+    flex-wrap:wrap; font-family:var(--font-mono); font-size:13px; color:var(--fog);
+  }
+  .trust b{color:var(--bone); font-weight:500;}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:100px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-size:38px; line-height:1.1; margin-bottom:16px;}
+  .section-head p{color:var(--fog); font-size:16px;}
+
+  /* ---------- PILLARS ---------- */
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .pillar{
+    background:var(--slate); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; position:relative;
+  }
+  .pillar .tag{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--emerald); margin-bottom:14px; display:block;
+  }
+  .pillar h3{font-size:21px; margin-bottom:10px;}
+  .pillar p{color:var(--fog); font-size:14.5px; margin-bottom:18px;}
+  .pillar ul{list-style:none; font-size:13.5px; color:var(--fog);}
+  .pillar li{padding-left:18px; position:relative; margin-bottom:7px;}
+  .pillar li::before{content:"→"; position:absolute; left:0; color:var(--emerald);}
+  @media (max-width:900px){ .pillars{grid-template-columns:1fr;} }
+
+  /* ---------- PROOF / CASES ---------- */
+  .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .case{
+    background:var(--slate-2);
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px;
+  }
+  .case .verified{
+    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px;
+    color:var(--emerald); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px;
+  }
+  .case h3{font-size:18px; margin-bottom:8px;}
+  .case p{color:var(--fog); font-size:14px;}
+  @media (max-width:900px){ .cases{grid-template-columns:1fr;} }
+
+  /* ---------- PROCESS ---------- */
+  .process{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .step{border-left:2px solid var(--line); padding-left:20px; position:relative;}
+  .step .num{font-family:var(--font-mono); color:var(--emerald); font-size:13px; margin-bottom:10px; display:block;}
+  .step h3{font-size:18px; margin-bottom:8px;}
+  .step p{color:var(--fog); font-size:14px;}
+  @media (max-width:900px){ .process{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .process{grid-template-columns:1fr;} }
+
+  /* ---------- LOCAL STRIP ---------- */
+  .local{
+    background:var(--slate); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .local .inner{
+    display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;
+    padding-top:56px; padding-bottom:56px;
+  }
+  .local h2{font-size:26px; margin-bottom:10px;}
+  .local p{color:var(--fog); font-size:15px; max-width:520px;}
+  .local .flag{font-family:var(--font-mono); font-size:12px; color:var(--amber); margin-bottom:10px; display:block;}
+  @media (max-width:800px){ .local .inner{grid-template-columns:1fr;} }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .contact-grid h2{font-size:36px; margin-bottom:16px;}
+  .contact-grid p{color:var(--fog); margin-bottom:24px;}
+  .contact-list{list-style:none; font-size:14.5px; color:var(--fog);}
+  .contact-list li{margin-bottom:10px; display:flex; gap:10px;}
+  .form-card{background:var(--slate); border:1px solid var(--line); border-radius:var(--radius); padding:28px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:12.5px; color:var(--fog); margin-bottom:6px; font-family:var(--font-mono);}
+  .field input, .field textarea{
+    width:100%; background:var(--ink); border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; color:var(--bone); font-family:var(--font-body); font-size:14px;
+  }
+  .field textarea{resize:vertical; min-height:90px;}
+  .field input::placeholder, .field textarea::placeholder{color:var(--fog); opacity:1;}
+  .form-card button{
+    width:100%; background:var(--emerald); color:#08150f; font-weight:600; border:none;
+    padding:14px; border-radius:9px; font-size:15px; cursor:pointer; margin-top:6px;
+  }
+  @media (max-width:900px){ .contact-grid{grid-template-columns:1fr;} }
+
+  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--fog); font-size:13px;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- SMALL PHONES ---------- */
+  @media (max-width:480px){
+    .wrap{padding:0 20px;}
+    nav{padding:16px 20px;}
+    .mobile-menu{padding:8px 20px 18px;}
+    section{padding:64px 0;}
+    .hero{padding:48px 0;}
+    .hero h1{font-size:30px;}
+    .hero p.lead{font-size:16px;}
+    .section-head h2{font-size:26px;}
+    .local h2{font-size:22px;}
+    .contact-grid h2{font-size:28px;}
+    .hero-ctas a{font-size:14px;}
+    .credtags{gap:8px;}
+    .trust .wrap{gap:18px; font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z" stroke="#2BAE7A" stroke-width="1.6" fill="rgba(43,174,122,0.08)"/>
+        <path d="M9 12l2 2 4-4.5" stroke="#2BAE7A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Sentinel QA
+    </div>
+    <div class="navlinks">
+      <a href="#services" data-pt="Serviços">Services</a>
+      <a href="#proof" data-pt="Provas">Proof</a>
+      <a href="#process" data-pt="Processo">Process</a>
+      <a href="#local" data-pt="João Pessoa">João Pessoa</a>
+      <a href="#contact" data-pt="Contato">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" title="Mudar para Português">
+        <span class="flag">🇧🇷</span><span class="lang-label">PT</span>
+      </button>
+      <a class="navcta" href="#contact"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" data-pt="Serviços">Services</a>
+    <a href="#proof" data-pt="Provas">Proof</a>
+    <a href="#process" data-pt="Processo">Process</a>
+    <a href="#local" data-pt="João Pessoa">João Pessoa</a>
+    <a href="#contact" data-pt="Contato">Contact</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" data-pt='<span class="dot"></span> STATUS DE QA — MONITORANDO'><span class="dot"></span> QA STATUS — MONITORING</div>
+      <h1 data-pt='Engenharia de qualidade que encontra o que <span class="accent">quebra a confiança</span>.'>Quality engineering that catches what <span class="accent">breaks trust</span>.</h1>
+      <p class="lead" data-pt="Eu testo os fluxos que seus clientes realmente usam — checkout, login, pagamentos, mobile — antes que eles mesmos encontrem os bugs. O mesmo rigor que apliquei no Arsenal FC e no sistema de segurança de medicamentos da União Europeia, agora trabalhando para o seu produto.">I test the flows your customers actually use — checkout, login, payments, mobile — before your customers find the bugs themselves. Same rigor I brought to Arsenal FC and the EU's medicines safety system, now working for your product.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contact" data-pt="Agende uma auditoria gratuita">Book a free QA audit</a>
+        <a class="btn-secondary" href="#proof" data-pt="Ver o trabalho">See the work</a>
+      </div>
+      <div class="credtags">
+        <span data-pt="8+ anos em QA">8+ years in QA</span>
+        <span>Arsenal FC</span>
+        <span data-pt="Agência Europeia de Medicamentos">European Medicines Agency</span>
+        <span>Banco Santander</span>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="term-head">
+        <div class="tdot" style="background:#e4574b"></div>
+        <div class="tdot" style="background:#e4a64b"></div>
+        <div class="tdot" style="background:#2BAE7A"></div>
+        <span class="label">sentinel-qa · live-checks.log</span>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <span data-pt="Experiência construída em:">Experience built on:</span>
+    <b>Arsenal Football Club</b>
+    <b data-pt="Agência Europeia de Medicamentos">European Medicines Agency</b>
+    <b>Banco Santander</b>
+    <b>NTT DATA</b>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-pt='<span class="dot"></span> COMO TRABALHAMOS'><span class="dot"></span> HOW WE WORK</div>
+      <h2 data-pt="Três formas de começar, um só resultado: menos surpresas em produção.">Three ways in, one outcome: fewer surprises in production.</h2>
+      <p data-pt="Sem menu de serviços inchado. Cada projeto se encaixa em uma de três trilhas, definida pelo que o seu time realmente precisa agora.">No bloated service menu. Every engagement fits into one of three tracks, scoped to what your team actually needs right now.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="tag" data-pt="01 · Diagnosticar">01 · Diagnose</span>
+        <h3 data-pt="Auditoria de Qualidade">Quality Audit</h3>
+        <p data-pt="Um olhar focado no que está realmente em risco — antes que custe um lançamento, um cliente ou o seu fim de semana.">A focused look at what's actually at risk — before it costs you a release, a customer, or a weekend.</p>
+        <ul>
+          <li data-pt="Mapeamento de cobertura e risco">Coverage &amp; risk mapping</li>
+          <li data-pt="Revisão manual e de automação">Manual + automation review</li>
+          <li data-pt="Relatório de achados priorizado">Prioritized findings report</li>
+        </ul>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag" data-pt="02 · Construir">02 · Build</span>
+        <h3 data-pt="Estratégia de Testes e Automação">Test Strategy &amp; Automation</h3>
+        <p data-pt="Um framework de testes feito para a sua stack e o tamanho do seu time — não um sistema complexo demais que ninguém consegue manter.">A test framework built for your stack and your team's size — not an over-engineered system no one maintains.</p>
+        <ul>
+          <li data-pt="Cobertura de Web, mobile e API">Web, mobile &amp; API coverage</li>
+          <li>WebdriverIO / Cypress / Selenium</li>
+          <li data-pt="Transferência de conhecimento e treinamento do time">Team handoff &amp; training</li>
+        </ul>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag" data-pt="03 · Sustentar">03 · Sustain</span>
+        <h3 data-pt="Parceria Contínua de QA">Ongoing QA Partnership</h3>
+        <p data-pt="Horas mensais em vez de uma contratação em tempo integral. Eu reviso novas funcionalidades antes do lançamento e mantenho sua suíte de testes saudável.">Monthly hours instead of a full-time hire. I review new features before they ship and keep your suite healthy.</p>
+        <ul>
+          <li data-pt="Verificações pré-lançamento">Pre-release checks</li>
+          <li data-pt="Manutenção de regressão">Regression maintenance</li>
+          <li data-pt="Acesso direto via Slack/WhatsApp">Direct Slack/WhatsApp access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-pt='<span class="dot"></span> PROVAS, NÃO PROMESSAS'><span class="dot"></span> PROOF, NOT PROMISES</div>
+      <h2 data-pt="Produtos reais. Riscos reais. Resultados reais.">Real products. Real stakes. Real results.</h2>
+      <p data-pt="Isso não é teoria de QA — é o mesmo processo usado em produtos com milhões de usuários e forte fiscalização regulatória.">This isn't theoretical QA advice — it's the same process used on products with millions of users and strict regulatory oversight.</p>
+    </div>
+    <div class="cases">
+      <div class="case reveal">
+        <div class="verified" data-pt="✓ Projeto verificado">✓ Verified project</div>
+        <h3>Arsenal Football Club</h3>
+        <p data-pt="Testes manuais e automatizados em aplicações web e mobile voltadas para torcedores, usando TypeScript, WebdriverIO e Cucumber — protegendo a experiência de jogo para milhões de fãs.">Manual and automated testing across web and mobile fan-facing apps, using TypeScript, WebdriverIO and Cucumber — protecting the matchday experience for millions of fans.</p>
+      </div>
+      <div class="case reveal">
+        <div class="verified" data-pt="✓ Projeto verificado">✓ Verified project</div>
+        <h3 data-pt="Agência Europeia de Medicamentos">European Medicines Agency</h3>
+        <p data-pt="Responsável por todo o escopo de automação do EudraVigilance, o sistema de relato de segurança de medicamentos da União Europeia — onde um bug não detectado tem consequências regulatórias reais.">Owned the full automation scope for EudraVigilance, the EU's safety-reporting system for medicines — where a missed bug has real regulatory consequences.</p>
+      </div>
+      <div class="case reveal">
+        <div class="verified" data-pt="✓ Projeto verificado">✓ Verified project</div>
+        <h3>Banco Santander</h3>
+        <p data-pt="Construí frameworks de automação e processos de rastreamento de defeitos para plataformas bancárias, trabalhando diretamente com product owners em Agile Scrum.">Built automation frameworks and defect-tracking processes for banking platforms, working directly with product owners under Agile Scrum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-pt='<span class="dot"></span> O PROCESSO'><span class="dot"></span> THE PROCESS</div>
+      <h2 data-pt="Simples, técnico e responsável.">Simple, technical, and accountable.</h2>
+      <p data-pt="Quatro etapas, sempre nesta ordem — para você sempre saber o que vem a seguir.">Four stages, always in this order — so you always know what happens next.</p>
+    </div>
+    <div class="process">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3 data-pt="Descobrir">Discover</h3>
+        <p data-pt="Entender seu produto, riscos, ambientes e objetivos de lançamento.">Understand your product, risks, environments and release goals.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <h3 data-pt="Construir">Build</h3>
+        <p data-pt="Montar a combinação certa de verificações manuais, automatizadas e de API.">Set up the right mix of manual, automated and API checks.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <h3 data-pt="Validar">Validate</h3>
+        <p data-pt="Executar testes direcionados e encontrar problemas antes dos seus usuários.">Run targeted testing and surface issues before your users do.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">04</span>
+        <h3 data-pt="Sustentar">Sustain</h3>
+        <p data-pt="Manter a cobertura e a confiança crescendo junto com o seu produto.">Keep coverage and confidence growing as your product does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="local" id="local">
+  <div class="wrap inner">
+    <div>
+      <span class="flag" data-pt="⚠ ATENDIMENTO LOCAL — JOÃO PESSOA">⚠ LOCAL TRACK — JOÃO PESSOA</span>
+      <h2 data-pt="Baseado em João Pessoa. Atendendo negócios locais também.">Based in João Pessoa. Working with local businesses too.</h2>
+      <p data-pt="Tem um site ou aplicativo que recebe pedidos, pagamentos ou reservas? Ofereço uma checagem gratuita de 5 minutos para identificar o que está custando vendas ou colocando os dados dos seus clientes em risco — sem termos técnicos, só uma resposta clara.">Running a website or app that takes orders, payments, or bookings? I offer a free 5-minute health check to flag what's costing you sales or putting customer data at risk — no jargon, just a clear answer.</p>
+    </div>
+    <a class="btn-primary" href="#contact" data-pt="Solicitar checagem gratuita">Request a free health check</a>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow" data-pt='<span class="dot"></span> FALE COMIGO'><span class="dot"></span> GET IN TOUCH</div>
+        <h2 data-pt="Pronto para ter mais confiança nos seus lançamentos?">Ready to build more confidence into your releases?</h2>
+        <p data-pt="Me conte sobre o seu produto e os desafios de qualidade atuais. Vou retornar com um plano prático e específico — nada de discurso de vendas genérico.">Tell me about your product and current quality challenges. I'll follow up with a practical, scoped plan — not a generic sales pitch.</p>
+        <ul class="contact-list">
+          <li>✉️ contato@sentinelqa.tech</li>
+          <li>🌐 www.sentinelqa.tech</li>
+          <li data-pt="📍 João Pessoa, Brasil — atendimento global">📍 João Pessoa, Brazil — working globally</li>
+        </ul>
+      </div>
+      <div class="form-card reveal">
+        <div class="field">
+          <label data-pt="Nome">Name</label>
+          <input type="text" placeholder="Your name" data-pt-placeholder="Seu nome">
+        </div>
+        <div class="field">
+          <label data-pt="E-mail profissional">Work email</label>
+          <input type="email" placeholder="you@company.com" data-pt-placeholder="seunome@empresa.com">
+        </div>
+        <div class="field">
+          <label data-pt="Contexto do projeto">Project context</label>
+          <textarea placeholder="What do you need tested or validated?" data-pt-placeholder="O que você precisa testar ou validar?"></textarea>
+        </div>
+        <button type="button" data-pt="Enviar mensagem">Send message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-pt="© 2026 Sentinel QA. Todos os direitos reservados.">© 2026 Sentinel QA. All rights reserved.</span>
+    <span data-pt="Serviços · Provas · Processo · Contato">Services · Proof · Process · Contact</span>
+  </div>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  // Terminal log animation
+  const lines = [
+    { status: 'PASS', cls:'pass', path: 'checkout_flow.spec.ts', time:'1.2s' },
+    { status: 'PASS', cls:'pass', path: 'payment_api.spec.ts', time:'0.8s' },
+    { status: 'FLAGGED', cls:'flag', path: 'mobile_nav.spec.ts', time:'reviewing' },
+    { status: 'PASS', cls:'pass', path: 'auth_session.spec.ts', time:'0.4s' },
+    { status: 'PASS', cls:'pass', path: 'signup_form.spec.ts', time:'0.6s' },
+    { status: 'PASS', cls:'pass', path: 'order_history.spec.ts', time:'0.9s' },
+  ];
+  const term = document.getElementById('termBody');
+  const termLabels = { pass:'PASS', flag:'FLAGGED' };
+  let i = 0;
+  function addLine(){
+    if(i >= lines.length){
+      const summary = document.createElement('div');
+      summary.className = 'term-summary';
+      summary.dataset.en = 'Suite complete — <b>128/130 checks passed</b> · 2 flagged for review';
+      summary.dataset.pt = 'Suíte concluída — <b>128/130 verificações aprovadas</b> · 2 sinalizadas para revisão';
+      summary.innerHTML = currentLang === 'pt' ? summary.dataset.pt : summary.dataset.en;
+      term.appendChild(summary);
+      return;
+    }
+    const l = lines[i];
+    const row = document.createElement('div');
+    row.className = 'term-line';
+    row.style.animationDelay = '0s';
+    row.innerHTML = `<span class="status ${l.cls}">${l.status}</span><span class="path">${l.path} — ${l.time}</span>`;
+    term.appendChild(row);
+    i++;
+    setTimeout(addLine, 550);
+  }
+  addLine();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold:0.15 });
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', ()=>{
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Language toggle (EN <-> PT-BR)
+  const langToggle = document.getElementById('langToggle');
+  const langFlag = langToggle.querySelector('.flag');
+  const langLabel = langToggle.querySelector('.lang-label');
+
+  // Capture original English content once, up front, for every translatable node
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+  });
+  document.querySelectorAll('[data-pt-placeholder]').forEach(el => {
+    if (el.dataset.enPlaceholder === undefined) el.dataset.enPlaceholder = el.placeholder;
+  });
+
+  function applyLanguage(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+    document.querySelectorAll('[data-pt]').forEach(el => {
+      el.innerHTML = lang === 'pt' ? el.dataset.pt : el.dataset.en;
+    });
+    document.querySelectorAll('[data-pt-placeholder]').forEach(el => {
+      el.placeholder = lang === 'pt' ? el.dataset.ptPlaceholder : el.dataset.enPlaceholder;
+    });
+
+    // Re-render the terminal summary line if it already exists, keeping it in sync
+    const summary = term.querySelector('.term-summary');
+    if (summary && summary.dataset.pt) {
+      summary.innerHTML = lang === 'pt' ? summary.dataset.pt : summary.dataset.en;
+    }
+
+    if (lang === 'pt') {
+      langFlag.textContent = '🇬🇧';
+      langLabel.textContent = 'EN';
+      langToggle.title = 'Switch to English';
+    } else {
+      langFlag.textContent = '🇧🇷';
+      langLabel.textContent = 'PT';
+      langToggle.title = 'Mudar para Português';
+    }
+  }
+
+  langToggle.addEventListener('click', () => {
+    applyLanguage(currentLang === 'en' ? 'pt' : 'en');
+  });
+</script>
+
+</body>
+</html>
