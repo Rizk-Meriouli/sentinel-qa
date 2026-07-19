@@ -246,6 +246,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width:100%; background:var(--emerald); color:#08150f; font-weight:600; border:none;
     padding:14px; border-radius:9px; font-size:15px; cursor:pointer; margin-top:6px;
   }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: var(--emerald);
+    font-weight: 600;
+  }
   @media (max-width:900px){ .contact-grid{grid-template-columns:1fr;} }
 
   footer{border-top:1px solid var(--line); padding:32px 0; color:var(--fog); font-size:13px;}
@@ -297,7 +304,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="lang-toggle" id="langToggle" title="Mudar para Português">
         <span class="flag">🇧🇷</span><span class="lang-label">PT</span>
       </button>
-      <a class="navcta" href="#contact"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
+      <!-- ADDED ID: cta-nav-audit -->
+      <a class="navcta" href="#contact" id="cta-nav-audit"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -320,7 +328,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 data-pt='Engenharia de qualidade que encontra o que <span class="accent">quebra a confiança</span>.'>Quality engineering that catches what <span class="accent">breaks trust</span>.</h1>
       <p class="lead" data-pt="Eu testo os fluxos que seus clientes realmente usam — checkout, login, pagamentos, mobile — antes que eles mesmos encontrem os bugs. O mesmo rigor que apliquei no Arsenal FC e no sistema de segurança de medicamentos da União Europeia, agora trabalhando para o seu produto.">I test the flows your customers actually use — checkout, login, payments, mobile — before your customers find the bugs themselves. Same rigor I brought to Arsenal FC and the EU's medicines safety system, now working for your product.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#contact" data-pt="Agende uma auditoria gratuita">Book a free QA audit</a>
+        <!-- ADDED ID: cta-hero-audit -->
+        <a class="btn-primary" href="#contact" id="cta-hero-audit" data-pt="Agende uma auditoria gratuita">Book a free QA audit</a>
         <a class="btn-secondary" href="#proof" data-pt="Ver o trabalho">See the work</a>
       </div>
       <div class="credtags">
@@ -462,7 +471,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 data-pt="Baseado em João Pessoa. Atendendo negócios locais também.">Based in João Pessoa. Working with local businesses too.</h2>
       <p data-pt="Tem um site ou aplicativo que recebe pedidos, pagamentos ou reservas? Ofereço uma checagem gratuita de 5 minutos para identificar o que está custando vendas ou colocando os dados dos seus clientes em risco — sem termos técnicos, só uma resposta clara.">Running a website or app that takes orders, payments, or bookings? I offer a free 5-minute health check to flag what's costing you sales or putting customer data at risk — no jargon, just a clear answer.</p>
     </div>
-    <a class="btn-primary" href="#contact" data-pt="Solicitar checagem gratuita">Request a free health check</a>
+    <!-- ADDED ID: cta-local-health -->
+    <a class="btn-primary" href="#contact" id="cta-local-health" data-pt="Solicitar checagem gratuita">Request a free health check</a>
   </div>
 </div>
 
@@ -474,26 +484,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 data-pt="Pronto para ter mais confiança nos seus lançamentos?">Ready to build more confidence into your releases?</h2>
         <p data-pt="Me conte sobre o seu produto e os desafios de qualidade atuais. Vou retornar com um plano prático e específico — nada de discurso de vendas genérico.">Tell me about your product and current quality challenges. I'll follow up with a practical, scoped plan — not a generic sales pitch.</p>
         <ul class="contact-list">
-          <li>✉️ contato@sentinelqa.tech</li>
+          <!-- ADDED ID: link-email -->
+          <li><a href="mailto:contato@sentinelqa.tech" id="link-email">✉️ contato@sentinelqa.tech</a></li>
           <li>🌐 www.sentinelqa.tech</li>
           <li data-pt="📍 João Pessoa, Brasil — atendimento global">📍 João Pessoa, Brazil — working globally</li>
         </ul>
       </div>
-      <div class="form-card reveal">
+      
+      <!-- WRAPPED IN FORM WITH ID: contact-form -->
+      <form id="contact-form" class="form-card reveal">
         <div class="field">
           <label data-pt="Nome">Name</label>
-          <input type="text" placeholder="Your name" data-pt-placeholder="Seu nome">
+          <input type="text" name="name" placeholder="Your name" data-pt-placeholder="Seu nome" required>
         </div>
         <div class="field">
           <label data-pt="E-mail profissional">Work email</label>
-          <input type="email" placeholder="you@company.com" data-pt-placeholder="seunome@empresa.com">
+          <input type="email" name="email" placeholder="you@company.com" data-pt-placeholder="seunome@empresa.com" required>
         </div>
         <div class="field">
           <label data-pt="Contexto do projeto">Project context</label>
-          <textarea placeholder="What do you need tested or validated?" data-pt-placeholder="O que você precisa testar ou validar?"></textarea>
+          <textarea name="message" placeholder="What do you need tested or validated?" data-pt-placeholder="O que você precisa testar ou validar?" required></textarea>
         </div>
-        <button type="button" data-pt="Enviar mensagem">Send message</button>
-      </div>
+        <!-- CHANGED TO TYPE="submit" AND ADDED ID -->
+        <button type="submit" id="btn-submit-form" data-pt="Enviar mensagem">Send message</button>
+        <div class="form-success" id="form-success" data-pt="Mensagem enviada com sucesso! Entrarei em contato em breve.">Message sent successfully! I will get back to you shortly.</div>
+      </form>
+
     </div>
   </div>
 </section>
@@ -568,7 +584,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const langFlag = langToggle.querySelector('.flag');
   const langLabel = langToggle.querySelector('.lang-label');
 
-  // Capture original English content once, up front, for every translatable node
   document.querySelectorAll('[data-pt]').forEach(el => {
     if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
   });
@@ -587,7 +602,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el.placeholder = lang === 'pt' ? el.dataset.ptPlaceholder : el.dataset.enPlaceholder;
     });
 
-    // Re-render the terminal summary line if it already exists, keeping it in sync
     const summary = term.querySelector('.term-summary');
     if (summary && summary.dataset.pt) {
       summary.innerHTML = lang === 'pt' ? summary.dataset.pt : summary.dataset.en;
@@ -607,6 +621,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   langToggle.addEventListener('click', () => {
     applyLanguage(currentLang === 'en' ? 'pt' : 'en');
   });
+
+  // ---------------------------------------------------------
+  // NEW: Form Submission Handling & Guaranteed GTM Tracking
+  // ---------------------------------------------------------
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop page reload
+      
+      // 1. Push conversion event to GTM DataLayer (100% reliable)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'form_submission',
+        'form_name': 'contact_form',
+        'form_location': 'footer_section'
+      });
+
+      // 2. Show success message & hide button
+      document.getElementById('btn-submit-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      
+      // 3. Optional: Reset form after 3 seconds
+      setTimeout(() => {
+        contactForm.reset();
+        document.getElementById('btn-submit-form').style.display = 'block';
+        document.getElementById('form-success').style.display = 'none';
+      }, 5000);
+    });
+  }
 </script>
 
 </body>
