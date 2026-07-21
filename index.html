@@ -11,30 +11,45 @@
 <meta property="og:image" content="https://sentinelqa.tech/og-image.jpg">
 <title>Sentinel QA — Quality engineering that catches what breaks trust</title>
 
-<!-- 1. Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TZR99LR4');</script>
-<!-- End Google Tag Manager -->
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<link rel="preconnect" href="https://www.clarity.ms" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link rel="dns-prefetch" href="https://www.clarity.ms">
 
-<!-- 2. Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ5DTHR6K7"></script>
+<!-- 1. Google Tag Manager (Deferred) -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KQ5DTHR6K7');
+  // Load GTM after page load to reduce blocking time
+  window.addEventListener('load', function() {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TZR99LR4');
+  });
 </script>
 
-<!-- 3. Microsoft Clarity -->
-<script type="text/javascript">
-  (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "xlvqlg33ld");
+<!-- 2. Google Analytics 4 (Deferred) -->
+<script>
+  window.addEventListener('load', function() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KQ5DTHR6K7');
+  });
+</script>
+
+<!-- 3. Microsoft Clarity (Deferred) -->
+<script>
+  window.addEventListener('load', function() {
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xlvqlg33ld");
+  });
 </script>
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2L4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z' fill='%232BAE7A'/></svg>">
@@ -170,7 +185,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .about-inner{display:flex; align-items:center; gap:28px;}
   .about-inner img{width:72px; height:72px; min-width:72px; border-radius:50%; border:2px solid var(--emerald); object-fit:cover;}
   .about-content{flex:1;}
-  .about-inner h2{font-size:20px; margin-bottom:10px;} /* Changed from h3 to h2 for proper hierarchy */
+  .about-inner h2{font-size:20px; margin-bottom:10px;}
   .about-inner p{color:var(--fog); font-size:15px; line-height:1.6; margin-bottom:16px;}
   .btn-linkedin{
     display:inline-flex; align-items:center; gap:8px;
@@ -413,7 +428,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="about-section" id="about">
   <div class="wrap about-inner reveal">
-    <img src="https://media.licdn.com/dms/image/v2/D4E03AQGxdBLXJQpHQQ/profile-displayphoto-crop_800_800/B4EZrWAPC6KgAI-/0/1764526977619?e=1785369600&v=beta&t=E1JvX9tJWbVmRPfJOm9OYHvHeCW2AzonSKMXyAIB6RE" alt="Rizk Meriouli" loading="lazy" width="72" height="72">
+    <img src="https://media.licdn.com/dms/image/v2/D4E03AQGxdBLXJQpHQQ/profile-displayphoto-crop_800_800/B4EZrWAPC6KgAI-/0/1764526977619?e=1785369600&v=beta&t=E1JvX9tJWbVmRPfJOm9OYHvHeCW2AzonSKMXyAIB6RE" alt="Rizk Meriouli" loading="lazy" width="72" height="72" decoding="async">
     <div class="about-content">
       <h2 data-pt="Oi, eu sou Rizk Meriouli">Hi, I'm Rizk Meriouli</h2>
       <p data-pt="Engenheiro de QA Sênior baseado em João Pessoa, Brasil. Passei mais de 8 anos construindo e quebrando software para times globais como Arsenal FC e Agência Europeia de Medicamentos. Fundei a Sentinel QA para trazer o mesmo rigor de nível empresarial para startups e negócios locais, sem a burocracia corporativa.">Senior QA Engineer based in João Pessoa, Brazil. I've spent 8+ years building and breaking software for global teams like Arsenal FC and the European Medicines Agency. I founded Sentinel QA to bring that same enterprise-grade rigor to startups and local businesses, without the corporate bloat.</p>
