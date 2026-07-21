@@ -80,21 +80,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .nav-right{display:flex; align-items:center; gap:16px;}
   .navcta{background:var(--emerald); color:#08150f; font-weight:600; font-size:14px; padding:10px 18px; border-radius:8px; white-space:nowrap; display:inline-flex; align-items:center;}
   .navcta .cta-short{display:none;}
-   .lang-toggle{display:flex; align-items:center; gap:6px; background:var(--slate-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone); transition:border-color 0.2s ease;}
+  
+  .lang-toggle{
+    display:flex; 
+    align-items:center; 
+    gap:6px; 
+    background:var(--slate-2); 
+    border:1px solid var(--line); 
+    border-radius:20px; 
+    padding:6px 12px; 
+    cursor:pointer; 
+    font-family:var(--font-mono); 
+    font-size:12px; 
+    color:var(--bone); 
+    transition:border-color 0.2s ease;
+    white-space: nowrap;
+  }
   .lang-toggle:hover{border-color:var(--emerald-dim);}
   
-  /* Language Toggle Flags - MUST BE OUTSIDE MEDIA QUERIES */
-  .lang-toggle .flag {
-    font-size: 16px !important;
-    line-height: 1 !important;
-    display: inline-block !important;
-    visibility: visible !important;
+  /* Language Toggle - WORKS ON ALL BROWSERS */
+  .lang-toggle .flag-icon {
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-block;
     min-width: 20px;
     text-align: center;
   }
   .lang-toggle .lang-label {
-    display: inline !important;
-    visibility: visible !important;
+    font-weight: 600;
+    display: inline;
   }
   
   .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
@@ -108,7 +122,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .navcta .cta-full{display:none;} .navcta .cta-short{display:inline;}
   }
 
-  /* HERO */
   /* HERO */
   .hero{padding:80px 0 60px;}
   .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
@@ -331,7 +344,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="nav-right">
       <button class="lang-toggle" id="langToggle" title="Mudar para Português">
-        <span class="flag">🇧🇷</span><span class="lang-label">PT</span>
+        <span class="flag-icon" id="flagIcon">🇧🇷</span>
+        <span class="lang-label" id="langLabel">PT</span>
       </button>
       <a class="navcta" href="#contact"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
@@ -679,7 +693,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p data-pt="Me conte sobre o seu produto e os desafios de qualidade atuais. Vou retornar com um plano prático e específico — nada de discurso de vendas genérico.">Tell me about your product and current quality challenges. I'll follow up with a practical, scoped plan — not a generic sales pitch.</p>
         <ul class="contact-list">
           <li>✉️ contato@sentinelqa.tech</li>
-          <li>🌐 www.sentinelqa.tech</li>
+          <li> www.sentinelqa.tech</li>
           <li data-pt="📍 João Pessoa, Brasil — atendimento global">📍 João Pessoa, Brazil — working globally</li>
         </ul>
         <a href="https://calendly.com/meriouli-riizk-1/30min" target="_blank" class="calendly-link" data-pt="📅 Ou agende uma chamada de 15 minutos">📅 Or book a 15-min discovery call</a>
@@ -800,11 +814,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
-  // LANGUAGE TOGGLE - FULLY WORKING
+  // LANGUAGE TOGGLE - WITH LOCALSTORAGE PERSISTENCE
   let currentLang = 'en';
   const langToggle = document.getElementById('langToggle');
-  const langFlag = langToggle.querySelector('.flag');
-  const langLabel = langToggle.querySelector('.lang-label');
+  const flagIcon = document.getElementById('flagIcon');
+  const langLabel = document.getElementById('langLabel');
 
   // Capture original English content once
   document.querySelectorAll('[data-pt]').forEach(el => {
@@ -814,7 +828,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (el.dataset.enPlaceholder === undefined) el.dataset.enPlaceholder = el.placeholder;
   });
 
-  function applyLanguage(lang){
+  // Load saved language from localStorage
+  function loadSavedLanguage() {
+    const savedLang = localStorage.getItem('sentinel-lang');
+    if (savedLang && (savedLang === 'pt' || savedLang === 'en')) {
+      currentLang = savedLang;
+      applyLanguage(currentLang, false); // false = don't save again
+    }
+  }
+
+  function applyLanguage(lang, save = true){
     currentLang = lang;
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
@@ -831,26 +854,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       summary.innerHTML = lang === 'pt' ? summary.dataset.pt : summary.dataset.en;
     }
 
-    // Update flag and label - ensure they're visible
-    const flagElement = langToggle.querySelector('.flag');
-    const labelElement = langToggle.querySelector('.lang-label');
-    
-    if (flagElement && labelElement) {
+    // Update flag icon and label - using text for 100% compatibility
+    if (flagIcon && langLabel) {
       if (lang === 'pt') {
-        flagElement.textContent = '🇬🇧'; // FIXED: Complete UK flag emoji
-        flagElement.style.display = 'inline-block';
-        labelElement.textContent = 'EN';
-        labelElement.style.display = 'inline';
+        flagIcon.textContent = '🇬🇧'; // UK flag emoji
+        langLabel.textContent = 'EN';
         langToggle.title = 'Switch to English';
       } else {
-        flagElement.textContent = '🇧🇷';
-        flagElement.style.display = 'inline-block';
-        labelElement.textContent = 'PT';
-        labelElement.style.display = 'inline';
+        flagIcon.textContent = '🇧🇷'; // Brazil flag emoji
+        langLabel.textContent = 'PT';
         langToggle.title = 'Mudar para Português';
       }
     }
+
+    // Save to localStorage if requested
+    if (save) {
+      localStorage.setItem('sentinel-lang', lang);
+    }
   }
+
+  // Initialize language on page load
+  loadSavedLanguage();
 
   langToggle.addEventListener('click', () => {
     applyLanguage(currentLang === 'en' ? 'pt' : 'en');
