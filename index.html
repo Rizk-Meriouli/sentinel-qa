@@ -84,7 +84,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .lang-toggle{
     display:flex; 
     align-items:center; 
-    gap:6px; 
+    gap:8px; 
     background:var(--slate-2); 
     border:1px solid var(--line); 
     border-radius:20px; 
@@ -98,15 +98,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .lang-toggle:hover{border-color:var(--emerald-dim);}
   
-  /* Language Toggle - WORKS ON ALL BROWSERS */
-  .lang-toggle .flag-icon {
-    font-size: 14px;
-    font-weight: 700;
+  /* Language Flag Icons - PNG/SVG approach */
+  .lang-flag {
+    width: 20px;
+    height: 20px;
     display: inline-block;
-    min-width: 20px;
-    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
   }
-  .lang-toggle .lang-label {
+  .lang-flag.brazil {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect fill='%23009c3b' width='30' height='20'/%3E%3Cpath fill='%23ffdf00' d='M15 2L28 10L15 18L2 10Z'/%3E%3Ccircle cx='15' cy='10' r='3.5' fill='%23002776'/%3E%3Cpath fill='%23fff' d='M15 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z'/%3E%3C/svg%3E");
+  }
+  .lang-flag.uk {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Crect fill='%23012169' width='60' height='30'/%3E%3Cpath fill='%23fff' d='M0,0 L60,30 M60,0 L0,30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0,0 L60,30 M60,0 L0,30' clip-path='inset(0 0 0 0)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath fill='%23fff' d='M30,0 L30,30 M0,15 L60,15' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30,0 L30,30 M0,15 L60,15' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E");
+  }
+  .lang-label {
     font-weight: 600;
     display: inline;
   }
@@ -162,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .about-inner{display:flex; align-items:center; gap:28px;}
   .about-inner img{width:72px; height:72px; min-width:72px; border-radius:50%; border:2px solid var(--emerald); object-fit:cover;}
   .about-content{flex:1;}
-  .about-inner h3{font-size:20px; margin-bottom:10px;}
+  .about-inner h2{font-size:20px; margin-bottom:10px;} /* Changed from h3 to h2 for proper hierarchy */
   .about-inner p{color:var(--fog); font-size:15px; line-height:1.6; margin-bottom:16px;}
   .btn-linkedin{
     display:inline-flex; align-items:center; gap:8px;
@@ -344,7 +352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="nav-right">
       <button class="lang-toggle" id="langToggle" title="Mudar para Português">
-        <span class="flag-icon" id="flagIcon">🇧🇷</span>
+        <span class="lang-flag brazil" id="flagIcon" aria-hidden="true"></span>
         <span class="lang-label" id="langLabel">PT</span>
       </button>
       <a class="navcta" href="#contact"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
@@ -405,12 +413,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="about-section" id="about">
   <div class="wrap about-inner reveal">
-    <img src="https://media.licdn.com/dms/image/v2/D4E03AQGxdBLXJQpHQQ/profile-displayphoto-crop_800_800/B4EZrWAPC6KgAI-/0/1764526977619?e=1785369600&v=beta&t=E1JvX9tJWbVmRPfJOm9OYHvHeCW2AzonSKMXyAIB6RE" alt="Rizk Meriouli" loading="lazy">
+    <img src="https://media.licdn.com/dms/image/v2/D4E03AQGxdBLXJQpHQQ/profile-displayphoto-crop_800_800/B4EZrWAPC6KgAI-/0/1764526977619?e=1785369600&v=beta&t=E1JvX9tJWbVmRPfJOm9OYHvHeCW2AzonSKMXyAIB6RE" alt="Rizk Meriouli" loading="lazy" width="72" height="72">
     <div class="about-content">
-      <h3 data-pt="Oi, eu sou Rizk Meriouli">Hi, I'm Rizk Meriouli</h3>
+      <h2 data-pt="Oi, eu sou Rizk Meriouli">Hi, I'm Rizk Meriouli</h2>
       <p data-pt="Engenheiro de QA Sênior baseado em João Pessoa, Brasil. Passei mais de 8 anos construindo e quebrando software para times globais como Arsenal FC e Agência Europeia de Medicamentos. Fundei a Sentinel QA para trazer o mesmo rigor de nível empresarial para startups e negócios locais, sem a burocracia corporativa.">Senior QA Engineer based in João Pessoa, Brazil. I've spent 8+ years building and breaking software for global teams like Arsenal FC and the European Medicines Agency. I founded Sentinel QA to bring that same enterprise-grade rigor to startups and local businesses, without the corporate bloat.</p>
-      <a class="btn-linkedin" href="https://www.linkedin.com/in/merioulirizk/" target="_blank" rel="noopener" data-pt="Conectar no LinkedIn →">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <a class="btn-linkedin" href="https://www.linkedin.com/in/merioulirizk/" target="_blank" rel="noopener" data-pt="Conectar no LinkedIn →" aria-label="Connect with Rizk Meriouli on LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         Connect on LinkedIn →
       </a>
     </div>
@@ -516,7 +524,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <div class="author-name">Youssef EL BEQQAL</div>
             <div class="author-title">Tech Lead @ Arsenal.com | AI Engineer</div>
-            <a class="linkedin-link" href="https://www.linkedin.com/in/youssef-el-beqqal-640b6917a/" target="_blank" rel="noopener">
+            <a class="linkedin-link" href="https://www.linkedin.com/in/youssef-el-beqqal-640b6917a/" target="_blank" rel="noopener" aria-label="View Youssef EL BEQQAL recommendation on LinkedIn">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
             </a>
@@ -532,7 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <div class="author-name">Youssef EL ALLALI</div>
             <div class="author-title">Chief AI Officer @ xpansion</div>
-            <a class="linkedin-link" href="https://www.linkedin.com/in/ysf-el-allali/" target="_blank" rel="noopener">
+            <a class="linkedin-link" href="https://www.linkedin.com/in/ysf-el-allali/" target="_blank" rel="noopener" aria-label="View Youssef EL ALLALI recommendation on LinkedIn">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
             </a>
@@ -548,7 +556,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <div class="author-name">Nadir Boumaraf</div>
             <div class="author-title">Lead QA &amp; Automation Engineer | SDET | DevTestOps</div>
-            <a class="linkedin-link" href="https://www.linkedin.com/in/nadir-boumaraf-34382617a/" target="_blank" rel="noopener">
+            <a class="linkedin-link" href="https://www.linkedin.com/in/nadir-boumaraf-34382617a/" target="_blank" rel="noopener" aria-label="View Nadir Boumaraf recommendation on LinkedIn">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
             </a>
@@ -564,7 +572,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <div class="author-name">Abdelkader Boudih</div>
             <div class="author-title" data-pt="Construindo produtos com foco em sustentabilidade, transparência, qualidade e oportunidade econômica">Building Products for Sustainability, Transparency, Quality and Economic Opportunity</div>
-            <a class="linkedin-link" href="https://www.linkedin.com/in/seuros/" target="_blank" rel="noopener">
+            <a class="linkedin-link" href="https://www.linkedin.com/in/seuros/" target="_blank" rel="noopener" aria-label="View Abdelkader Boudih recommendation on LinkedIn">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
             </a>
@@ -642,28 +650,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="faq-item">
             <div class="faq-question">
               <span data-pt="Qual é o investimento?">What's the investment?</span>
-              <div class="faq-toggle"></div>
+              <div class="faq-toggle" aria-hidden="true"></div>
             </div>
             <div class="faq-answer" data-pt="Auditorias de Qualidade começam em €2.500. Parcerias contínuas a partir de €3.000/mês. Projetos personalizados conforme escopo.">Quality Audits start at €2,500. Ongoing partnerships from €3,000/month. Custom projects based on scope.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">
               <span data-pt="Você trabalha com NDAs?">Do you work with NDAs?</span>
-              <div class="faq-toggle"></div>
+              <div class="faq-toggle" aria-hidden="true"></div>
             </div>
             <div class="faq-answer" data-pt="Sim, confidencialidade total. Estou acostumado a trabalhar com dados sensíveis e sistemas regulados.">Yes, complete confidentiality. I'm experienced working with sensitive data and regulated systems.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">
               <span data-pt="Qual o prazo típico?">What's the typical timeline?</span>
-              <div class="faq-toggle"></div>
+              <div class="faq-toggle" aria-hidden="true"></div>
             </div>
             <div class="faq-answer" data-pt="Auditorias: 1-2 semanas. Construção de automação: 4-8 semanas. Parcerias: flexível conforme necessidade.">Audits: 1-2 weeks. Automation build: 4-8 weeks. Partnerships: flexible based on needs.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">
               <span data-pt="Trabalha com fundadores não-técnicos?">Do you work with non-technical founders?</span>
-              <div class="faq-toggle"></div>
+              <div class="faq-toggle" aria-hidden="true"></div>
             </div>
             <div class="faq-answer" data-pt="Sim, sem jargão. Explico tudo de forma clara e prática, focando no que importa para o seu negócio.">Yes, no jargon. I explain everything clearly and practically, focusing on what matters for your business.</div>
           </div>
@@ -676,7 +684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="local" id="local">
   <div class="wrap inner">
     <div>
-      <span class="flag" data-pt="⚠ ATENDIMENTO LOCAL — JOÃO PESSOA">⚠ LOCAL TRACK — JOÃO PESSOA</span>
+      <span class="flag" data-pt=" ATENDIMENTO LOCAL — JOÃO PESSOA">⚠ LOCAL TRACK — JOÃO PESSOA</span>
       <h2 data-pt="Baseado em João Pessoa. Atendendo negócios locais também.">Based in João Pessoa. Working with local businesses too.</h2>
       <p data-pt="Tem um site ou aplicativo que recebe pedidos, pagamentos ou reservas? Ofereço uma checagem gratuita de 5 minutos para identificar o que está custando vendas ou colocando os dados dos seus clientes em risco — sem termos técnicos, só uma resposta clara.">Running a website or app that takes orders, payments, or bookings? I offer a free 5-minute health check to flag what's costing you sales or putting customer data at risk — no jargon, just a clear answer.</p>
     </div>
@@ -696,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li> www.sentinelqa.tech</li>
           <li data-pt="📍 João Pessoa, Brasil — atendimento global">📍 João Pessoa, Brazil — working globally</li>
         </ul>
-        <a href="https://calendly.com/meriouli-riizk-1/30min" target="_blank" class="calendly-link" data-pt="📅 Ou agende uma chamada de 15 minutos">📅 Or book a 15-min discovery call</a>
+        <a href="https://calendly.com/meriouli-riizk-1/30min" target="_blank" class="calendly-link" data-pt="📅 Ou agende uma chamada de 15 minutos" aria-label="Book a 15-minute discovery call on Calendly"> Or book a 15-min discovery call</a>
       </div>
       
       <div class="form-card reveal">
@@ -814,7 +822,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
-  // LANGUAGE TOGGLE - WITH LOCALSTORAGE PERSISTENCE
+  // LANGUAGE TOGGLE - WITH LOCALSTORAGE PERSISTENCE & SVG FLAGS
   let currentLang = 'en';
   const langToggle = document.getElementById('langToggle');
   const flagIcon = document.getElementById('flagIcon');
@@ -854,14 +862,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       summary.innerHTML = lang === 'pt' ? summary.dataset.pt : summary.dataset.en;
     }
 
-    // Update flag icon and label - using text for 100% compatibility
+    // Update flag icon (SVG) and label
     if (flagIcon && langLabel) {
       if (lang === 'pt') {
-        flagIcon.textContent = '🇬🇧'; // UK flag emoji
+        flagIcon.className = 'lang-flag uk';
         langLabel.textContent = 'EN';
         langToggle.title = 'Switch to English';
       } else {
-        flagIcon.textContent = '🇧🇷'; // Brazil flag emoji
+        flagIcon.className = 'lang-flag brazil';
         langLabel.textContent = 'PT';
         langToggle.title = 'Mudar para Português';
       }
