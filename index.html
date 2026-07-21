@@ -80,8 +80,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .nav-right{display:flex; align-items:center; gap:16px;}
   .navcta{background:var(--emerald); color:#08150f; font-weight:600; font-size:14px; padding:10px 18px; border-radius:8px; white-space:nowrap; display:inline-flex; align-items:center;}
   .navcta .cta-short{display:none;}
-  .lang-toggle{display:flex; align-items:center; gap:6px; background:var(--slate-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone); transition:border-color 0.2s ease;}
+   .lang-toggle{display:flex; align-items:center; gap:6px; background:var(--slate-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone); transition:border-color 0.2s ease;}
   .lang-toggle:hover{border-color:var(--emerald-dim);}
+  
+  /* Language Toggle Flags - MUST BE OUTSIDE MEDIA QUERIES */
+  .lang-toggle .flag {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    min-width: 20px;
+    text-align: center;
+  }
+  .lang-toggle .lang-label {
+    display: inline !important;
+    visibility: visible !important;
+  }
+  
   .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
   .menu-toggle span{width:22px; height:2px; background:var(--bone); display:block;}
   .mobile-menu{display:none; flex-direction:column; gap:2px; background:var(--slate); border-bottom:1px solid var(--line); padding:8px 32px 18px;}
@@ -93,16 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .navcta .cta-full{display:none;} .navcta .cta-short{display:inline;}
   }
 
-  /* Ensure language toggle flag displays properly on ALL screen sizes */
-  .lang-toggle .flag {
-    font-size: 16px;
-    line-height: 1;
-    display: inline-block !important;
-  }
-  .lang-toggle .lang-label {
-    display: inline !important;
-  }
-
+  /* HERO */
   /* HERO */
   .hero{padding:80px 0 60px;}
   .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
