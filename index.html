@@ -87,9 +87,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .mobile-menu{display:none; flex-direction:column; gap:2px; background:var(--slate); border-bottom:1px solid var(--line); padding:8px 32px 18px;}
   .mobile-menu a{padding:12px 0; font-size:15px; color:var(--bone); border-bottom:1px solid var(--line);}
   .mobile-menu.open{display:flex;}
+  
   @media (max-width:860px){
     .navlinks{display:none;} .menu-toggle{display:flex;} .brand{font-size:16px;} .navcta{font-size:12.5px; padding:9px 13px;}
     .navcta .cta-full{display:none;} .navcta .cta-short{display:inline;}
+  }
+
+  /* Ensure language toggle flag displays properly on ALL screen sizes */
+  .lang-toggle .flag {
+    font-size: 16px;
+    line-height: 1;
+    display: inline-block !important;
+  }
+  .lang-toggle .lang-label {
+    display: inline !important;
   }
 
   /* HERO */
@@ -814,14 +825,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       summary.innerHTML = lang === 'pt' ? summary.dataset.pt : summary.dataset.en;
     }
 
-    if (lang === 'pt') {
-      langFlag.textContent = '🇬🇧';
-      langLabel.textContent = 'EN';
-      langToggle.title = 'Switch to English';
-    } else {
-      langFlag.textContent = '🇧🇷';
-      langLabel.textContent = 'PT';
-      langToggle.title = 'Mudar para Português';
+    // Update flag and label - ensure they're visible
+    const flagElement = langToggle.querySelector('.flag');
+    const labelElement = langToggle.querySelector('.lang-label');
+    
+    if (flagElement && labelElement) {
+      if (lang === 'pt') {
+        flagElement.textContent = '🇬🇧'; // FIXED: Complete UK flag emoji
+        flagElement.style.display = 'inline-block';
+        labelElement.textContent = 'EN';
+        labelElement.style.display = 'inline';
+        langToggle.title = 'Switch to English';
+      } else {
+        flagElement.textContent = '🇧🇷';
+        flagElement.style.display = 'inline-block';
+        labelElement.textContent = 'PT';
+        labelElement.style.display = 'inline';
+        langToggle.title = 'Mudar para Português';
+      }
     }
   }
 
@@ -832,41 +853,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ---------------------------------------------------------
   // MERGED: Form Submission Handling & Guaranteed GTM Tracking
   // ---------------------------------------------------------
-  
-// Form Submission Tracking - Contact Form
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Push event to GTM DataLayer (MUST match your trigger name)
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'form_submission',
-      'form_name': 'contact_form',
-      'form_location': 'contact_section'
-    });
-
-    // UI Feedback
-    const btn = contactForm.querySelector('button[type="submit"]');
-    const originalText = btn.textContent;
-    
-    btn.disabled = true;
-    btn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
-    
-    setTimeout(() => {
-      btn.textContent = currentLang === 'pt' ? 'Mensagem enviada!' : 'Message sent!';
-      btn.style.background = '#10b981';
-      contactForm.reset();
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
       
-    setTimeout(() => {
-        btn.disabled = false;
-        btn.textContent = originalText;
-        btn.style.background = '';
-      }, 4000);
-    }, 1500);
-  });
-}
+      // Push event to GTM DataLayer (MUST match your trigger name)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'form_submission',
+        'form_name': 'contact_form',
+        'form_location': 'contact_section'
+      });
+
+      // UI Feedback
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      
+      btn.disabled = true;
+      btn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
+      
+      setTimeout(() => {
+        btn.textContent = currentLang === 'pt' ? 'Mensagem enviada!' : 'Message sent!';
+        btn.style.background = '#10b981';
+        contactForm.reset();
+        
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          btn.style.background = '';
+        }, 4000);
+      }, 1500);
+    });
+  }
 </script>
 
 </body>
