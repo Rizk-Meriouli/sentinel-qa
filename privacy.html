@@ -27,8 +27,25 @@
   .navlinks a:hover{color:var(--bone);}
   .nav-right{display:flex; align-items:center; gap:16px;}
   .navcta{background:var(--emerald); color:#08150f; font-weight:600; font-size:14px; padding:10px 18px; border-radius:8px;}
-  .lang-toggle{display:flex; align-items:center; gap:6px; background:var(--slate-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone);}
+  
+  .lang-toggle{
+    display:flex; align-items:center; gap:8px; background:var(--slate-2); border:1px solid var(--line); 
+    border-radius:20px; padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; 
+    color:var(--bone); transition:border-color 0.2s ease; white-space: nowrap;
+  }
   .lang-toggle:hover{border-color:var(--emerald-dim);}
+  
+  .lang-flag {
+    width: 20px; height: 20px; display: inline-block; background-size: contain;
+    background-repeat: no-repeat; background-position: center; flex-shrink: 0;
+  }
+  .lang-flag.brazil {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect fill='%23009c3b' width='30' height='20'/%3E%3Cpath fill='%23ffdf00' d='M15 2L28 10L15 18L2 10Z'/%3E%3Ccircle cx='15' cy='10' r='3.5' fill='%23002776'/%3E%3Cpath fill='%23fff' d='M15 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z'/%3E%3C/svg%3E");
+  }
+  .lang-flag.uk {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Crect fill='%23012169' width='60' height='30'/%3E%3Cpath fill='%23fff' d='M0,0 L60,30 M60,0 L0,30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0,0 L60,30 M60,0 L0,30' clip-path='inset(0 0 0 0)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath fill='%23fff' d='M30,0 L30,30 M0,15 L60,15' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30,0 L30,30 M0,15 L60,15' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E");
+  }
+  .lang-label { font-weight: 600; display: inline; }
 
   .page{max-width:800px; margin:0 auto; padding:60px 32px 100px;}
   .back-link{display:inline-flex; align-items:center; gap:8px; color:var(--emerald); font-size:14px; margin-bottom:32px; transition:gap 0.2s ease;}
@@ -80,7 +97,8 @@
     </div>
     <div class="nav-right">
       <button class="lang-toggle" id="langToggle" title="Mudar para Português">
-        <span class="flag">🇧🇷</span><span class="lang-label">PT</span>
+        <span class="lang-flag brazil" id="flagIcon" aria-hidden="true"></span>
+        <span class="lang-label" id="langLabel">PT</span>
       </button>
       <a class="navcta" href="index.html#contact">Book a free audit</a>
     </div>
@@ -134,25 +152,43 @@
 <script>
   let currentLang = 'en';
   const langToggle = document.getElementById('langToggle');
-  const langFlag = langToggle.querySelector('.flag');
-  const langLabel = langToggle.querySelector('.lang-label');
+  const flagIcon = document.getElementById('flagIcon');
+  const langLabel = document.getElementById('langLabel');
 
   document.querySelectorAll('[data-pt]').forEach(el => {
     if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
   });
 
-  function applyLanguage(lang){
+  function loadSavedLanguage() {
+    const savedLang = localStorage.getItem('sentinel-lang');
+    if (savedLang && (savedLang === 'pt' || savedLang === 'en')) {
+      currentLang = savedLang;
+      applyLanguage(currentLang, false);
+    }
+  }
+
+  function applyLanguage(lang, save = true){
     currentLang = lang;
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
     document.querySelectorAll('[data-pt]').forEach(el => {
       el.innerHTML = lang === 'pt' ? el.dataset.pt : el.dataset.en;
     });
-    if (lang === 'pt') {
-      langFlag.textContent = '🇬🇧'; langLabel.textContent = 'EN'; langToggle.title = 'Switch to English';
-    } else {
-      langFlag.textContent = '🇧🇷'; langLabel.textContent = 'PT'; langToggle.title = 'Mudar para Português';
+    
+    if (flagIcon && langLabel) {
+      if (lang === 'pt') {
+        flagIcon.className = 'lang-flag uk';
+        langLabel.textContent = 'EN';
+        langToggle.title = 'Switch to English';
+      } else {
+        flagIcon.className = 'lang-flag brazil';
+        langLabel.textContent = 'PT';
+        langToggle.title = 'Mudar para Português';
+      }
     }
+    if (save) localStorage.setItem('sentinel-lang', lang);
   }
+
+  loadSavedLanguage();
   langToggle.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'pt' : 'en'));
 </script>
 
