@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sentinel QA: manual and automated software testing for startups and local businesses, led by an engineer who has worked on Arsenal FC, the European Medicines Agency, and Banco Santander. Based in João Pessoa, Brazil.">
+<meta property="og:title" content="Sentinel QA — Quality engineering that catches what breaks trust">
+<meta property="og:description" content="Professional QA testing for startups and local businesses. Arsenal FC, EMA, Santander experience.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sentinelqa.tech">
+<meta property="og:image" content="https://sentinelqa.tech/og-image.jpg">
+<title>Sentinel QA — Quality engineering that catches what breaks trust</title>
+
+<!-- 1. Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TZR99LR4');</script>
 <!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sentinel QA: manual and automated software testing for startups and local businesses, led by an engineer who has worked on Arsenal FC, the European Medicines Agency, and Banco Santander. Based in João Pessoa, Brazil.">
-<title>Sentinel QA — Quality engineering that catches what breaks trust</title>
+
+<!-- 2. Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ5DTHR6K7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KQ5DTHR6K7');
+</script>
+
+<!-- 3. Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "xlvqlg33ld");
+</script>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2L4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z' fill='%232BAE7A'/></svg>">
+
 <style>
   :root{
     --ink:#0B1220;
@@ -32,6 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   html{scroll-behavior:smooth;}
   body{
     background:var(--ink);
+    background-image: radial-gradient(circle at 20% 50%, rgba(43,174,122,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(43,174,122,0.02) 0%, transparent 50%);
     color:var(--bone);
     font-family:var(--font-body);
     line-height:1.5;
@@ -42,148 +70,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .mono{font-family:var(--font-mono);}
   a{color:inherit; text-decoration:none;}
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:var(--ink);
-    border-bottom:1px solid var(--line);
-  }
-  nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 32px; max-width:1180px; margin:0 auto;
-  }
+  /* NAV */
+  header{position:sticky; top:0; z-index:50; background:var(--ink); border-bottom:1px solid var(--line);}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1180px; margin:0 auto;}
   .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:18px;}
   .brand svg{width:26px; height:26px;}
   .navlinks{display:flex; gap:32px; font-size:14px; color:var(--fog);}
   .navlinks a:hover{color:var(--bone);}
   .nav-right{display:flex; align-items:center; gap:16px;}
-  .navcta{
-    background:var(--emerald); color:#08150f; font-weight:600; font-size:14px;
-    padding:10px 18px; border-radius:8px; white-space:nowrap; display:inline-flex; align-items:center;
-  }
+  .navcta{background:var(--emerald); color:#08150f; font-weight:600; font-size:14px; padding:10px 18px; border-radius:8px; white-space:nowrap; display:inline-flex; align-items:center;}
   .navcta .cta-short{display:none;}
-  .lang-toggle{
-    display:flex; align-items:center; gap:6px;
-    background:var(--slate-2); border:1px solid var(--line); border-radius:20px;
-    padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone);
-  }
+  .lang-toggle{display:flex; align-items:center; gap:6px; background:var(--slate-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer; font-family:var(--font-mono); font-size:12px; color:var(--bone); transition:border-color 0.2s ease;}
   .lang-toggle:hover{border-color:var(--emerald-dim);}
-  .lang-toggle .flag{font-size:15px; line-height:1;}
-  @media (max-width:600px){ .lang-toggle span.lang-label{display:none;} }
-  .menu-toggle{
-    display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
-  }
+  .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
   .menu-toggle span{width:22px; height:2px; background:var(--bone); display:block;}
-  .mobile-menu{
-    display:none; flex-direction:column; gap:2px;
-    background:var(--slate); border-bottom:1px solid var(--line);
-    padding:8px 32px 18px;
-  }
+  .mobile-menu{display:none; flex-direction:column; gap:2px; background:var(--slate); border-bottom:1px solid var(--line); padding:8px 32px 18px;}
   .mobile-menu a{padding:12px 0; font-size:15px; color:var(--bone); border-bottom:1px solid var(--line);}
-  .mobile-menu a:last-child{border-bottom:none;}
   .mobile-menu.open{display:flex;}
   @media (max-width:860px){
-    .navlinks{display:none;}
-    .menu-toggle{display:flex;}
-    .brand{font-size:16px;}
-    .navcta{font-size:12.5px; padding:9px 13px;}
-  }
-  @media (max-width:400px){
-    .navcta .cta-full{display:none;}
-    .navcta .cta-short{display:inline;}
-    .navcta{padding:9px 12px;}
+    .navlinks{display:none;} .menu-toggle{display:flex;} .brand{font-size:16px;} .navcta{font-size:12.5px; padding:9px 13px;}
+    .navcta .cta-full{display:none;} .navcta .cta-short{display:inline;}
   }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:100px 0 80px;
-  }
-  .hero-grid{
-    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--emerald); border:1px solid var(--emerald-dim); background:var(--slate-2);
-    padding:6px 12px; border-radius:20px; margin-bottom:22px;
-  }
+  /* HERO */
+  .hero{padding:80px 0 60px;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--emerald); border:1px solid var(--emerald-dim); background:var(--slate-2); padding:6px 12px; border-radius:20px; margin-bottom:22px;}
   .dot{width:6px; height:6px; border-radius:50%; background:var(--emerald); box-shadow:0 0 8px var(--emerald); animation:pulse 1.8s infinite;}
   @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
   .hero h1{font-size:56px; line-height:1.05; margin-bottom:22px;}
   .hero h1 .accent{color:var(--emerald);}
   .hero p.lead{font-size:18px; color:var(--fog); max-width:520px; margin-bottom:32px;}
   .hero-ctas{display:flex; gap:14px; margin-bottom:40px; flex-wrap:wrap;}
-  .btn-primary{
-    background:var(--emerald); color:#08150f; font-weight:600; font-size:15px;
-    padding:14px 24px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center;
-    text-align:center; white-space:nowrap; border:none; cursor:pointer;
-  }
-  .btn-secondary{
-    border:1px solid var(--line); color:var(--bone); font-weight:500; font-size:15px;
-    padding:14px 24px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center;
-    text-align:center; white-space:nowrap;
-  }
+  .btn-primary{background:var(--emerald); color:#08150f; font-weight:600; font-size:15px; padding:14px 24px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center; text-align:center; white-space:nowrap; border:none; cursor:pointer; transition:transform 0.2s ease, box-shadow 0.2s ease;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 24px -8px rgba(43,174,122,0.4);}
+  .btn-secondary{border:1px solid var(--line); color:var(--bone); font-weight:500; font-size:15px; padding:14px 24px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center; text-align:center; white-space:nowrap; transition:border-color 0.2s ease, background 0.2s ease;}
+  .btn-secondary:hover{border-color:var(--emerald-dim); background:rgba(43,174,122,0.05);}
   .credtags{display:flex; gap:10px; flex-wrap:wrap; font-family:var(--font-mono); font-size:12px; color:var(--fog);}
   .credtags span{border:1px solid var(--line); padding:5px 10px; border-radius:6px;}
-
-  /* Terminal panel */
-  .terminal{
-    background:var(--slate); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
-  }
-  .term-head{
-    display:flex; align-items:center; gap:8px; padding:12px 16px;
-    border-bottom:1px solid var(--line); background:var(--slate-2);
-  }
+  .terminal{background:var(--slate); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);}
+  .term-head{display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid var(--line); background:var(--slate-2);}
   .term-head .tdot{width:9px; height:9px; border-radius:50%;}
   .term-head span.label{margin-left:8px; font-family:var(--font-mono); font-size:12px; color:var(--fog);}
   .term-body{padding:20px; font-family:var(--font-mono); font-size:13px; height:310px; overflow:hidden;}
   .term-line{display:flex; gap:10px; margin-bottom:12px; opacity:0; animation:fadeIn 0.4s forwards;}
   .term-line .status{font-weight:600;}
-  .status.pass{color:var(--emerald);}
-  .status.flag{color:var(--amber);}
+  .status.pass{color:var(--emerald);} .status.flag{color:var(--amber);}
   .term-line .path{color:var(--fog);}
   @keyframes fadeIn{to{opacity:1;}}
-  .term-summary{
-    margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
-    color:var(--fog); font-size:12px;
-  }
+  .term-summary{margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); color:var(--fog); font-size:12px;}
   .term-summary b{color:var(--bone);}
+  @media (max-width:900px){ .hero{padding:60px 0;} .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:38px;} }
 
-  @media (max-width:900px){
-    .hero{padding:60px 0;}
-    .hero-grid{grid-template-columns:1fr;}
-    .hero h1{font-size:38px;}
-  }
-
-  /* ---------- TRUST STRIP ---------- */
-  .trust{
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-    padding:26px 0;
-  }
-  .trust .wrap{
-    display:flex; align-items:center; justify-content:center; gap:40px;
-    flex-wrap:wrap; font-family:var(--font-mono); font-size:13px; color:var(--fog);
-  }
+  /* TRUST */
+  .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0;}
+  .trust .wrap{display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; font-family:var(--font-mono); font-size:13px; color:var(--fog);}
   .trust b{color:var(--bone); font-weight:500;}
 
-  /* ---------- SECTION SHARED ---------- */
-  section{padding:100px 0;}
-  .section-head{max-width:640px; margin-bottom:56px;}
+  /* ABOUT SECTION */
+  .about-section{padding:60px 0; border-bottom:1px solid var(--line);}
+  .about-inner{display:flex; align-items:center; gap:28px;}
+  .about-inner img{width:72px; height:72px; min-width:72px; border-radius:50%; border:2px solid var(--emerald); object-fit:cover;}
+  .about-content{flex:1;}
+  .about-inner h3{font-size:20px; margin-bottom:10px;}
+  .about-inner p{color:var(--fog); font-size:15px; line-height:1.6; margin-bottom:16px;}
+  .btn-linkedin{
+    display:inline-flex; align-items:center; gap:8px;
+    background:transparent; color:var(--emerald); font-weight:600; font-size:14px;
+    padding:10px 18px; border-radius:8px;
+    border:1px solid var(--emerald-dim);
+    transition:all 0.2s ease;
+  }
+  .btn-linkedin:hover{background:rgba(43,174,122,0.1); border-color:var(--emerald);}
+  .btn-linkedin svg{width:16px; height:16px; fill:currentColor;}
+
+  /* SECTIONS */
+  section{padding:70px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
   .section-head .eyebrow{margin-bottom:16px;}
-  .section-head h2{font-size:38px; line-height:1.1; margin-bottom:16px;}
+  .section-head h2{font-size:36px; line-height:1.1; margin-bottom:14px;}
   .section-head p{color:var(--fog); font-size:16px;}
 
-  /* ---------- PILLARS ---------- */
+  /* PILLARS */
   .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .pillar{
-    background:var(--slate); border:1px solid var(--line); border-radius:var(--radius);
-    padding:28px; position:relative;
-  }
-  .pillar .tag{
-    font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
-    color:var(--emerald); margin-bottom:14px; display:block;
-  }
+  .pillar{background:var(--slate); border:1px solid var(--line); border-radius:var(--radius); padding:28px; position:relative; transition:transform 0.3s ease, box-shadow 0.3s ease;}
+  .pillar:hover{transform:translateY(-4px); box-shadow:0 12px 40px -20px rgba(43,174,122,0.15);}
+  .pillar .tag{font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--emerald); margin-bottom:14px; display:block;}
   .pillar h3{font-size:21px; margin-bottom:10px;}
   .pillar p{color:var(--fog); font-size:14.5px; margin-bottom:18px;}
   .pillar ul{list-style:none; font-size:13.5px; color:var(--fog);}
@@ -191,21 +163,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .pillar li::before{content:"→"; position:absolute; left:0; color:var(--emerald);}
   @media (max-width:900px){ .pillars{grid-template-columns:1fr;} }
 
-  /* ---------- PROOF / CASES ---------- */
+  /* TECH STACK */
+  .tech-stack{margin-top:40px; padding-top:24px; border-top:1px solid var(--line);}
+  .tech-stack-label{font-family:var(--font-mono); font-size:11px; color:var(--fog); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; display:block;}
+  .tech-logos{display:flex; gap:12px; flex-wrap:wrap;}
+  .tech-logo{font-family:var(--font-mono); font-size:12px; color:var(--fog); padding:5px 10px; border:1px solid var(--line); border-radius:6px; opacity:0.7; transition:opacity 0.2s ease, border-color 0.2s ease;}
+  .tech-logo:hover{opacity:1; border-color:var(--emerald-dim);}
+
+  /* PROOF/CASES */
   .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .case{
-    background:var(--slate-2);
-    border:1px solid var(--line); border-radius:var(--radius); padding:26px;
-  }
-  .case .verified{
-    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px;
-    color:var(--emerald); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px;
-  }
+  .case{background:var(--slate-2); border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
+  .case .verified{font-family:var(--font-mono); font-size:11px; color:var(--emerald); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px;}
   .case h3{font-size:18px; margin-bottom:8px;}
   .case p{color:var(--fog); font-size:14px;}
   @media (max-width:900px){ .cases{grid-template-columns:1fr;} }
 
-  /* ---------- PROCESS ---------- */
+  /* TESTIMONIALS */
+  .testimonials-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+  .testimonial{background:var(--slate-2); border:1px solid var(--line); border-radius:var(--radius); padding:26px; display:flex; flex-direction:column; position:relative; transition:transform 0.3s ease, box-shadow 0.3s ease;}
+  .testimonial:hover{transform:translateY(-4px); box-shadow:0 12px 40px -20px rgba(43,174,122,0.15);}
+  .testimonial.featured{border-color:var(--emerald); box-shadow:0 0 0 1px var(--emerald), 0 20px 40px -24px rgba(43,174,122,0.35);}
+  .testimonial.featured:hover{box-shadow:0 0 0 1px var(--emerald), 0 24px 48px -24px rgba(43,174,122,0.4);}
+  .testimonial .badge{position:absolute; top:16px; right:16px; background:var(--emerald); color:#08150f; font-family:var(--font-mono); font-weight:700; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; padding:4px 10px; border-radius:999px;}
+  .testimonial .quote-mark{font-family:var(--font-display); font-size:40px; line-height:1; color:var(--emerald-dim); margin-bottom:6px;}
+  .testimonial .quote{color:var(--bone); font-size:14.5px; line-height:1.65; margin-bottom:20px;}
+  .testimonial .author{display:flex; align-items:flex-start; gap:12px; margin-top:auto;}
+  .testimonial .avatar{width:40px; height:40px; min-width:40px; border-radius:50%; background:var(--emerald-dim); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:14px; color:var(--bone);}
+  .testimonial .author-name{font-size:14px; font-weight:600; color:var(--bone);}
+  .testimonial .author-title{font-size:12px; color:var(--fog);}
+  .testimonial .linkedin-link{display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:12.5px; color:var(--fog); transition:color 0.2s ease;}
+  .testimonial .linkedin-link:hover{color:var(--emerald);}
+  .testimonial .linkedin-link svg{width:14px; height:14px; fill:currentColor; flex-shrink:0;}
+  @media (max-width:768px){ .testimonials-grid{grid-template-columns:1fr;} }
+
+  /* PROCESS */
   .process{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
   .step{border-left:2px solid var(--line); padding-left:20px; position:relative;}
   .step .num{font-family:var(--font-mono); color:var(--emerald); font-size:13px; margin-bottom:10px; display:block;}
@@ -214,76 +205,96 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width:900px){ .process{grid-template-columns:1fr 1fr;} }
   @media (max-width:560px){ .process{grid-template-columns:1fr;} }
 
-  /* ---------- LOCAL STRIP ---------- */
-  .local{
-    background:var(--slate); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  }
-  .local .inner{
-    display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;
-    padding-top:56px; padding-bottom:56px;
-  }
-  .local h2{font-size:26px; margin-bottom:10px;}
+  /* PRE-CONTACT (What happens next + FAQ) */
+  .pre-contact{background:var(--slate); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:70px 0;}
+  .pre-contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .pre-contact-block h3{font-size:22px; margin-bottom:24px;}
+  
+  .next-steps{display:flex; flex-direction:column; gap:20px;}
+  .next-step{display:flex; gap:14px; align-items:flex-start;}
+  .next-step-num{width:28px; height:28px; min-width:28px; background:var(--emerald); color:#08150f; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:700; font-size:12px;}
+  .next-step-content h4{font-size:15px; margin-bottom:4px;}
+  .next-step-content p{font-size:14px; color:var(--fog); line-height:1.5;}
+
+  .faq-list{display:flex; flex-direction:column;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item:last-child{border-bottom:none;}
+  .faq-question{font-size:15px; font-weight:600; padding:16px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none;}
+  .faq-answer{max-height:0; overflow:hidden; transition:max-height 0.3s ease-out, padding 0.3s ease; font-size:14px; color:var(--fog); line-height:1.6;}
+  .faq-item.open .faq-answer{max-height:200px; padding-bottom:16px;}
+  .faq-toggle{width:16px; height:16px; position:relative; transition:transform 0.3s ease; flex-shrink:0;}
+  .faq-toggle::before, .faq-toggle::after{content:''; position:absolute; background:var(--emerald); transition:transform 0.3s ease;}
+  .faq-toggle::before{width:16px; height:2px; top:7px; left:0;}
+  .faq-toggle::after{width:2px; height:16px; top:0; left:7px;}
+  .faq-item.open .faq-toggle{transform:rotate(45deg);}
+
+  @media (max-width:768px){ .pre-contact-grid{grid-template-columns:1fr; gap:40px;} }
+
+  /* LOCAL */
+  .local{background:var(--slate-2); padding:60px 0;}
+  .local .inner{display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;}
+  .local h2{font-size:24px; margin-bottom:10px;}
   .local p{color:var(--fog); font-size:15px; max-width:520px;}
   .local .flag{font-family:var(--font-mono); font-size:12px; color:var(--amber); margin-bottom:10px; display:block;}
   @media (max-width:800px){ .local .inner{grid-template-columns:1fr;} }
 
-  /* ---------- CONTACT ---------- */
-  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
-  .contact-grid h2{font-size:36px; margin-bottom:16px;}
-  .contact-grid p{color:var(--fog); margin-bottom:24px;}
+  /* CONTACT */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;}
+  .contact-grid h2{font-size:34px; margin-bottom:14px;}
+  .contact-grid > div > p{color:var(--fog); margin-bottom:20px;}
   .contact-list{list-style:none; font-size:14.5px; color:var(--fog);}
   .contact-list li{margin-bottom:10px; display:flex; gap:10px;}
+  
   .form-card{background:var(--slate); border:1px solid var(--line); border-radius:var(--radius); padding:28px;}
   .field{margin-bottom:16px;}
   .field label{display:block; font-size:12.5px; color:var(--fog); margin-bottom:6px; font-family:var(--font-mono);}
-  .field input, .field textarea{
-    width:100%; background:var(--ink); border:1px solid var(--line); border-radius:8px;
-    padding:12px 14px; color:var(--bone); font-family:var(--font-body); font-size:14px;
-  }
+  .field input, .field textarea{width:100%; background:var(--ink); border:1px solid var(--line); border-radius:8px; padding:12px 14px; color:var(--bone); font-family:var(--font-body); font-size:14px;}
   .field textarea{resize:vertical; min-height:90px;}
   .field input::placeholder, .field textarea::placeholder{color:var(--fog); opacity:1;}
-  .form-card button{
-    width:100%; background:var(--emerald); color:#08150f; font-weight:600; border:none;
-    padding:14px; border-radius:9px; font-size:15px; cursor:pointer; margin-top:6px;
-  }
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 20px;
-    color: var(--emerald);
-    font-weight: 600;
-  }
+  .form-card button{width:100%; background:var(--emerald); color:#08150f; font-weight:600; border:none; padding:14px; border-radius:9px; font-size:15px; cursor:pointer; margin-top:6px; transition:transform 0.2s ease;}
+  .form-card button:hover{transform:translateY(-2px);}
+  .form-card button:disabled{opacity:0.6; cursor:not-allowed;}
+  .pricing-note{font-size:12px; color:var(--fog); margin-top:12px; text-align:center;}
+  .calendly-link{display:inline-flex; align-items:center; gap:8px; margin-top:20px; font-size:14px; color:var(--emerald); border:1px solid var(--emerald-dim); padding:10px 16px; border-radius:8px; transition:all 0.2s ease;}
+  .calendly-link:hover{background:rgba(43,174,122,0.1);}
   @media (max-width:900px){ .contact-grid{grid-template-columns:1fr;} }
 
-  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--fog); font-size:13px;}
-  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+  /* FOOTER */
+  footer{border-top:1px solid var(--line); padding:28px 0; color:var(--fog); font-size:13px;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center;}
+  .footer-links{display:flex; gap:20px; align-items:center;}
+  .footer-links a{color:var(--fog); transition:color 0.2s ease;}
+  .footer-links a:hover{color:var(--emerald);}
+  .social-links{display:flex; gap:12px;}
+  .social-links a{width:32px; height:32px; border:1px solid var(--line); border-radius:6px; display:flex; align-items:center; justify-content:center; transition:border-color 0.2s ease, color 0.2s ease;}
+  .social-links a:hover{border-color:var(--emerald); color:var(--emerald);}
+  .social-links svg{width:16px; height:16px; fill:currentColor;}
+  .cookie-notice{width:100%; text-align:center; margin-top:20px; padding-top:20px; border-top:1px solid var(--line); font-size:11px; color:var(--fog);}
+  @media (max-width:600px){ footer .wrap{flex-direction:column; text-align:center;} .footer-links{flex-direction:column; gap:12px;} }
+
+  .whatsapp-float{position:fixed; bottom:24px; right:24px; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,0.4); z-index:100; transition:transform 0.3s ease, box-shadow 0.3s ease;}
+  .whatsapp-float:hover{transform:translateY(-4px); box-shadow:0 8px 28px rgba(37,211,102,0.5);}
+  .whatsapp-float svg{width:28px; height:28px; fill:white;}
+  @media (max-width:600px){ .whatsapp-float{bottom:20px; right:20px; width:52px; height:52px;} .whatsapp-float svg{width:26px; height:26px;} }
 
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
-  /* ---------- SMALL PHONES ---------- */
   @media (max-width:480px){
-    .wrap{padding:0 20px;}
-    nav{padding:16px 20px;}
-    .mobile-menu{padding:8px 20px 18px;}
-    section{padding:64px 0;}
-    .hero{padding:48px 0;}
-    .hero h1{font-size:30px;}
-    .hero p.lead{font-size:16px;}
-    .section-head h2{font-size:26px;}
-    .local h2{font-size:22px;}
-    .contact-grid h2{font-size:28px;}
-    .hero-ctas a{font-size:14px;}
-    .credtags{gap:8px;}
-    .trust .wrap{gap:18px; font-size:12px;}
+    .wrap{padding:0 20px;} nav{padding:16px 20px;} .mobile-menu{padding:8px 20px 18px;}
+    section{padding:56px 0;} .hero{padding:48px 0;} .hero h1{font-size:30px;} .hero p.lead{font-size:16px;}
+    .section-head h2{font-size:26px;} .local h2{font-size:22px;} .contact-grid h2{font-size:28px;}
+    .pre-contact{padding:56px 0;}
   }
 </style>
 </head>
 <body>
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZR99LR4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
 <header>
   <nav>
     <div class="brand">
@@ -296,6 +307,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="navlinks">
       <a href="#services" data-pt="Serviços">Services</a>
       <a href="#proof" data-pt="Provas">Proof</a>
+      <a href="#testimonials" data-pt="Depoimentos">Testimonials</a>
       <a href="#process" data-pt="Processo">Process</a>
       <a href="#local" data-pt="João Pessoa">João Pessoa</a>
       <a href="#contact" data-pt="Contato">Contact</a>
@@ -304,8 +316,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="lang-toggle" id="langToggle" title="Mudar para Português">
         <span class="flag">🇧🇷</span><span class="lang-label">PT</span>
       </button>
-      <!-- ADDED ID: cta-nav-audit -->
-      <a class="navcta" href="#contact" id="cta-nav-audit"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
+      <a class="navcta" href="#contact"><span class="cta-full" data-pt="Agende uma auditoria gratuita">Book a free audit</span><span class="cta-short" data-pt="Auditoria grátis">Free audit</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -314,6 +325,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#services" data-pt="Serviços">Services</a>
     <a href="#proof" data-pt="Provas">Proof</a>
+    <a href="#testimonials" data-pt="Depoimentos">Testimonials</a>
     <a href="#process" data-pt="Processo">Process</a>
     <a href="#local" data-pt="João Pessoa">João Pessoa</a>
     <a href="#contact" data-pt="Contato">Contact</a>
@@ -328,8 +340,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 data-pt='Engenharia de qualidade que encontra o que <span class="accent">quebra a confiança</span>.'>Quality engineering that catches what <span class="accent">breaks trust</span>.</h1>
       <p class="lead" data-pt="Eu testo os fluxos que seus clientes realmente usam — checkout, login, pagamentos, mobile — antes que eles mesmos encontrem os bugs. O mesmo rigor que apliquei no Arsenal FC e no sistema de segurança de medicamentos da União Europeia, agora trabalhando para o seu produto.">I test the flows your customers actually use — checkout, login, payments, mobile — before your customers find the bugs themselves. Same rigor I brought to Arsenal FC and the EU's medicines safety system, now working for your product.</p>
       <div class="hero-ctas">
-        <!-- ADDED ID: cta-hero-audit -->
-        <a class="btn-primary" href="#contact" id="cta-hero-audit" data-pt="Agende uma auditoria gratuita">Book a free QA audit</a>
+        <a class="btn-primary" href="#contact" data-pt="Agende uma auditoria gratuita">Book a free QA audit</a>
         <a class="btn-secondary" href="#proof" data-pt="Ver o trabalho">See the work</a>
       </div>
       <div class="credtags">
@@ -339,7 +350,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span>Banco Santander</span>
       </div>
     </div>
-
     <div class="terminal">
       <div class="term-head">
         <div class="tdot" style="background:#e4574b"></div>
@@ -362,6 +372,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<section class="about-section" id="about">
+  <div class="wrap about-inner reveal">
+    <img src="https://media.licdn.com/dms/image/v2/D4E03AQGxdBLXJQpHQQ/profile-displayphoto-crop_800_800/B4EZrWAPC6KgAI-/0/1764526977619?e=1785369600&v=beta&t=E1JvX9tJWbVmRPfJOm9OYHvHeCW2AzonSKMXyAIB6RE" alt="Rizk Meriouli" loading="lazy">
+    <div class="about-content">
+      <h3 data-pt="Oi, eu sou Rizk Meriouli">Hi, I'm Rizk Meriouli</h3>
+      <p data-pt="Engenheiro de QA Sênior baseado em João Pessoa, Brasil. Passei mais de 8 anos construindo e quebrando software para times globais como Arsenal FC e Agência Europeia de Medicamentos. Fundei a Sentinel QA para trazer o mesmo rigor de nível empresarial para startups e negócios locais, sem a burocracia corporativa.">Senior QA Engineer based in João Pessoa, Brazil. I've spent 8+ years building and breaking software for global teams like Arsenal FC and the European Medicines Agency. I founded Sentinel QA to bring that same enterprise-grade rigor to startups and local businesses, without the corporate bloat.</p>
+      <a class="btn-linkedin" href="https://www.linkedin.com/in/merioulirizk/" target="_blank" rel="noopener" data-pt="Conectar no LinkedIn →">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Connect on LinkedIn →
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="services">
   <div class="wrap">
     <div class="section-head reveal">
@@ -369,7 +393,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 data-pt="Três formas de começar, um só resultado: menos surpresas em produção.">Three ways in, one outcome: fewer surprises in production.</h2>
       <p data-pt="Sem menu de serviços inchado. Cada projeto se encaixa em uma de três trilhas, definida pelo que o seu time realmente precisa agora.">No bloated service menu. Every engagement fits into one of three tracks, scoped to what your team actually needs right now.</p>
     </div>
-
     <div class="pillars">
       <div class="pillar reveal">
         <span class="tag" data-pt="01 · Diagnosticar">01 · Diagnose</span>
@@ -402,6 +425,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
     </div>
+    <div class="tech-stack reveal">
+      <span class="tech-stack-label" data-pt="Ferramentas e tecnologias">Tools &amp; Technologies</span>
+      <div class="tech-logos">
+        <span class="tech-logo">TypeScript</span>
+        <span class="tech-logo">WebdriverIO</span>
+        <span class="tech-logo">Cypress</span>
+        <span class="tech-logo">Selenium</span>
+        <span class="tech-logo">Cucumber</span>
+        <span class="tech-logo">Jest</span>
+        <span class="tech-logo">Playwright</span>
+        <span class="tech-logo">GitHub Actions</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -427,6 +463,82 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="verified" data-pt="✓ Projeto verificado">✓ Verified project</div>
         <h3>Banco Santander</h3>
         <p data-pt="Construí frameworks de automação e processos de rastreamento de defeitos para plataformas bancárias, trabalhando diretamente com product owners em Agile Scrum.">Built automation frameworks and defect-tracking processes for banking platforms, working directly with product owners under Agile Scrum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-pt='<span class="dot"></span> DEPOIMENTOS'><span class="dot"></span> TESTIMONIALS</div>
+      <h2 data-pt="O que dizem quem trabalhou comigo.">What people who've worked with me say.</h2>
+      <p data-pt="Recomendações reais de colegas, líderes técnicos e gestores dos projetos com Arsenal FC, Agência Europeia de Medicamentos e o setor bancário.">Real recommendations from colleagues, tech leads, and managers across Arsenal FC, European Medicines Agency, and banking projects.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal featured">
+        <span class="badge">Arsenal FC</span>
+        <div class="quote-mark">"</div>
+        <p class="quote" data-pt="Rizk presta atenção constante a cada detalhe, aborda problemas com uma mentalidade orientada a soluções e se comunica com clareza durante todo o processo de desenvolvimento. Recomendo totalmente trabalhar com ele.">Rizk consistently pays close attention to every detail, approaches problems with a solution-oriented mindset, and communicates clearly throughout the development process. I highly recommend working with him.</p>
+        <div class="author">
+          <div class="avatar">YB</div>
+          <div>
+            <div class="author-name">Youssef EL BEQQAL</div>
+            <div class="author-title">Tech Lead @ Arsenal.com | AI Engineer</div>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/youssef-el-beqqal-640b6917a/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <span class="badge">xpansion</span>
+        <div class="quote-mark">"</div>
+        <p class="quote" data-pt="Rizk é um dos engenheiros de QA mais intuitivos com quem já trabalhei. Ele tem uma capacidade excepcional de identificar bugs críticos e demonstra profissionalismo constante ao colaborar com clientes e stakeholders.">Rizk is one of the most intuitive QA engineers I've worked with. He has an exceptional ability to uncover critical bugs and consistently demonstrates professionalism when collaborating with customers and stakeholders.</p>
+        <div class="author">
+          <div class="avatar">YA</div>
+          <div>
+            <div class="author-name">Youssef EL ALLALI</div>
+            <div class="author-title">Chief AI Officer @ xpansion</div>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/ysf-el-allali/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <span class="badge">Dscale.io</span>
+        <div class="quote-mark">"</div>
+        <p class="quote" data-pt="Rizk é um engenheiro de QA comprometido e atento aos detalhes, que se adapta rapidamente a novos desafios. Ele vai além de executar tarefas, buscando entender os sistemas em profundidade, e sua expertise técnica em automação o torna um ativo valioso para qualquer time.">Rizk is a committed, detail-oriented QA engineer who quickly adapts to new challenges. He goes beyond simply executing tasks by understanding systems in depth, and his technical expertise in automation makes him a valuable asset to any team.</p>
+        <div class="author">
+          <div class="avatar">NB</div>
+          <div>
+            <div class="author-name">Nadir Boumaraf</div>
+            <div class="author-title">Lead QA &amp; Automation Engineer | SDET | DevTestOps</div>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/nadir-boumaraf-34382617a/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <span class="badge">CommonShare</span>
+        <div class="quote-mark">"</div>
+        <p class="quote" data-pt="Tive o prazer de acompanhar a evolução do Rizk, de Analista de QA Júnior a Engenheiro de QA Sênior. Seu compromisso com a qualidade, a expertise profunda em testes manuais e automatizados, e o crescimento profissional contínuo sempre superaram as expectativas.">I've had the pleasure of watching Rizk grow from a Junior QA Analyst to a Senior QA Engineer. His commitment to quality, deep expertise in both manual and automated testing, and continuous professional growth consistently exceeded expectations.</p>
+        <div class="author">
+          <div class="avatar">AB</div>
+          <div>
+            <div class="author-name">Abdelkader Boudih</div>
+            <div class="author-title" data-pt="Construindo produtos com foco em sustentabilidade, transparência, qualidade e oportunidade econômica">Building Products for Sustainability, Transparency, Quality and Economic Opportunity</div>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/seuros/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span data-pt="Ver recomendação no LinkedIn">View recommendation on LinkedIn</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -464,6 +576,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<section class="pre-contact" id="pre-contact">
+  <div class="wrap">
+    <div class="pre-contact-grid">
+      <div class="pre-contact-block reveal">
+        <h3 data-pt="O que acontece depois?">What happens next?</h3>
+        <div class="next-steps">
+          <div class="next-step">
+            <div class="next-step-num">1</div>
+            <div class="next-step-content">
+              <h4 data-pt="Resposta em 24h">Reply in 24h</h4>
+              <p data-pt="Eu analiso seu projeto e retorno rapidamente">I review your project and respond quickly</p>
+            </div>
+          </div>
+          <div class="next-step">
+            <div class="next-step-num">2</div>
+            <div class="next-step-content">
+              <h4 data-pt="Chamada de 15 min">15-min call</h4>
+              <p data-pt="Alinhamos objetivos e escopo">We align goals and scope</p>
+            </div>
+          </div>
+          <div class="next-step">
+            <div class="next-step-num">3</div>
+            <div class="next-step-content">
+              <h4 data-pt="Plano prático">Practical plan</h4>
+              <p data-pt="Você recebe uma proposta clara">You receive a clear proposal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pre-contact-block reveal">
+        <h3 data-pt="Perguntas frequentes">Common questions</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span data-pt="Qual é o investimento?">What's the investment?</span>
+              <div class="faq-toggle"></div>
+            </div>
+            <div class="faq-answer" data-pt="Auditorias de Qualidade começam em €2.500. Parcerias contínuas a partir de €3.000/mês. Projetos personalizados conforme escopo.">Quality Audits start at €2,500. Ongoing partnerships from €3,000/month. Custom projects based on scope.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span data-pt="Você trabalha com NDAs?">Do you work with NDAs?</span>
+              <div class="faq-toggle"></div>
+            </div>
+            <div class="faq-answer" data-pt="Sim, confidencialidade total. Estou acostumado a trabalhar com dados sensíveis e sistemas regulados.">Yes, complete confidentiality. I'm experienced working with sensitive data and regulated systems.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span data-pt="Qual o prazo típico?">What's the typical timeline?</span>
+              <div class="faq-toggle"></div>
+            </div>
+            <div class="faq-answer" data-pt="Auditorias: 1-2 semanas. Construção de automação: 4-8 semanas. Parcerias: flexível conforme necessidade.">Audits: 1-2 weeks. Automation build: 4-8 weeks. Partnerships: flexible based on needs.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span data-pt="Trabalha com fundadores não-técnicos?">Do you work with non-technical founders?</span>
+              <div class="faq-toggle"></div>
+            </div>
+            <div class="faq-answer" data-pt="Sim, sem jargão. Explico tudo de forma clara e prática, focando no que importa para o seu negócio.">Yes, no jargon. I explain everything clearly and practically, focusing on what matters for your business.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="local" id="local">
   <div class="wrap inner">
     <div>
@@ -471,8 +649,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 data-pt="Baseado em João Pessoa. Atendendo negócios locais também.">Based in João Pessoa. Working with local businesses too.</h2>
       <p data-pt="Tem um site ou aplicativo que recebe pedidos, pagamentos ou reservas? Ofereço uma checagem gratuita de 5 minutos para identificar o que está custando vendas ou colocando os dados dos seus clientes em risco — sem termos técnicos, só uma resposta clara.">Running a website or app that takes orders, payments, or bookings? I offer a free 5-minute health check to flag what's costing you sales or putting customer data at risk — no jargon, just a clear answer.</p>
     </div>
-    <!-- ADDED ID: cta-local-health -->
-    <a class="btn-primary" href="#contact" id="cta-local-health" data-pt="Solicitar checagem gratuita">Request a free health check</a>
+    <a class="btn-primary" href="#contact" data-pt="Solicitar checagem gratuita">Request a free health check</a>
   </div>
 </div>
 
@@ -484,32 +661,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 data-pt="Pronto para ter mais confiança nos seus lançamentos?">Ready to build more confidence into your releases?</h2>
         <p data-pt="Me conte sobre o seu produto e os desafios de qualidade atuais. Vou retornar com um plano prático e específico — nada de discurso de vendas genérico.">Tell me about your product and current quality challenges. I'll follow up with a practical, scoped plan — not a generic sales pitch.</p>
         <ul class="contact-list">
-          <!-- ADDED ID: link-email -->
-          <li><a href="mailto:contato@sentinelqa.tech" id="link-email">✉️ contato@sentinelqa.tech</a></li>
+          <li>✉️ contato@sentinelqa.tech</li>
           <li>🌐 www.sentinelqa.tech</li>
           <li data-pt="📍 João Pessoa, Brasil — atendimento global">📍 João Pessoa, Brazil — working globally</li>
         </ul>
+        <a href="https://calendly.com/meriouli-riizk-1/30min" target="_blank" class="calendly-link" data-pt="📅 Ou agende uma chamada de 15 minutos">📅 Or book a 15-min discovery call</a>
       </div>
       
-      <!-- WRAPPED IN FORM WITH ID: contact-form -->
-      <form id="contact-form" class="form-card reveal">
-        <div class="field">
-          <label data-pt="Nome">Name</label>
-          <input type="text" name="name" placeholder="Your name" data-pt-placeholder="Seu nome" required>
-        </div>
-        <div class="field">
-          <label data-pt="E-mail profissional">Work email</label>
-          <input type="email" name="email" placeholder="you@company.com" data-pt-placeholder="seunome@empresa.com" required>
-        </div>
-        <div class="field">
-          <label data-pt="Contexto do projeto">Project context</label>
-          <textarea name="message" placeholder="What do you need tested or validated?" data-pt-placeholder="O que você precisa testar ou validar?" required></textarea>
-        </div>
-        <!-- CHANGED TO TYPE="submit" AND ADDED ID -->
-        <button type="submit" id="btn-submit-form" data-pt="Enviar mensagem">Send message</button>
-        <div class="form-success" id="form-success" data-pt="Mensagem enviada com sucesso! Entrarei em contato em breve.">Message sent successfully! I will get back to you shortly.</div>
-      </form>
-
+      <div class="form-card reveal">
+        <form id="contactForm" action="#" method="POST">
+          <div class="field">
+            <label data-pt="Nome">Name</label>
+            <input type="text" name="name" placeholder="Your name" data-pt-placeholder="Seu nome" required>
+          </div>
+          <div class="field">
+            <label data-pt="E-mail profissional">Work email</label>
+            <input type="email" name="email" placeholder="you@company.com" data-pt-placeholder="seunome@empresa.com" required>
+          </div>
+          <div class="field">
+            <label data-pt="Contexto do projeto">Project context</label>
+            <textarea name="message" placeholder="What do you need tested or validated?" data-pt-placeholder="O que você precisa testar ou validar?" required></textarea>
+          </div>
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+          <button type="submit" data-pt="Enviar mensagem">Send message</button>
+          <p class="pricing-note" data-pt="Auditorias a partir de €2.500">Audits starting at €2,500</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -519,13 +696,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="wrap">
     <span data-pt="© 2026 Sentinel QA. Todos os direitos reservados.">© 2026 Sentinel QA. All rights reserved.</span>
-    <span data-pt="Serviços · Provas · Processo · Contato">Services · Proof · Process · Contact</span>
+    <div class="footer-links">
+      <a href="#services" data-pt="Serviços">Services</a>
+      <a href="#proof" data-pt="Provas">Proof</a>
+      <a href="#process" data-pt="Processo">Process</a>
+      <a href="#contact" data-pt="Contato">Contact</a>
+      <a href="privacy.html" data-pt="Política de Privacidade">Privacy Policy</a>
+      <a href="terms.html" data-pt="Termos e Condições">Terms &amp; Conditions</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/merioulirizk/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://instagram.com/sentinel.qa" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+    </div>
+    <div class="cookie-notice" data-pt="Este site usa cookies para melhorar sua experiência e analisar tráfego anônimo.">This site uses cookies to improve your experience and track anonymous analytics.</div>
   </div>
 </footer>
 
-<script>
-  let currentLang = 'en';
+<a href="https://wa.me/553188300017?text=Hi%20Rizk,%20I%20saw%20your%20website%20and%20I'm%20interested%20in%20a%20QA%20audit." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp" title="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.079-1.87l-0.507-0.292-4.713 1.262 1.262-4.669-0.292-0.508c-1.237-2.173-1.893-4.613-1.893-7.124 0-7.434 6.046-13.48 13.48-13.48s13.48 6.046 13.48 13.48-6.046 13.48-13.48 13.48zM21.793 18.793c-0.214-0.107-1.262-0.621-1.456-0.692-0.194-0.071-0.336-0.107-0.476 0.107s-0.544 0.692-0.668 0.834c-0.124 0.142-0.248 0.16-0.462 0.053-1.783-0.893-2.953-1.591-4.132-3.617-0.311-0.534 0.311-0.497 0.893-1.659 0.098-0.194 0.049-0.363-0.027-0.509-0.076-0.146-0.668-1.611-0.915-2.206-0.241-0.579-0.486-0.5-0.668-0.509-0.172-0.009-0.369-0.009-0.564-0.009s-0.512 0.071-0.779 0.363c-0.267 0.292-1.021 0.997-1.021 2.434s1.046 2.857 1.192 3.052c0.146 0.195 2.063 3.158 5.003 4.426 1.956 0.844 2.531 0.676 2.973 0.632 0.668-0.067 1.262-0.509 1.438-0.997 0.176-0.488 0.176-0.906 0.124-0.995-0.052-0.089-0.194-0.142-0.408-0.249z"/></svg>
+</a>
 
+<script>
   // Terminal log animation
   const lines = [
     { status: 'PASS', cls:'pass', path: 'checkout_flow.spec.ts', time:'1.2s' },
@@ -536,7 +731,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { status: 'PASS', cls:'pass', path: 'order_history.spec.ts', time:'0.9s' },
   ];
   const term = document.getElementById('termBody');
-  const termLabels = { pass:'PASS', flag:'FLAGGED' };
   let i = 0;
   function addLine(){
     if(i >= lines.length){
@@ -579,11 +773,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
-  // Language toggle (EN <-> PT-BR)
+  // FAQ toggle
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // LANGUAGE TOGGLE - FULLY WORKING
+  let currentLang = 'en';
   const langToggle = document.getElementById('langToggle');
   const langFlag = langToggle.querySelector('.flag');
   const langLabel = langToggle.querySelector('.lang-label');
 
+  // Capture original English content once
   document.querySelectorAll('[data-pt]').forEach(el => {
     if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
   });
@@ -602,6 +808,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el.placeholder = lang === 'pt' ? el.dataset.ptPlaceholder : el.dataset.enPlaceholder;
     });
 
+    // Re-render terminal summary if exists
     const summary = term.querySelector('.term-summary');
     if (summary && summary.dataset.pt) {
       summary.innerHTML = lang === 'pt' ? summary.dataset.pt : summary.dataset.en;
@@ -623,33 +830,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 
   // ---------------------------------------------------------
-  // NEW: Form Submission Handling & Guaranteed GTM Tracking
+  // MERGED: Form Submission Handling & Guaranteed GTM Tracking
   // ---------------------------------------------------------
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // Stop page reload
-      
-      // 1. Push conversion event to GTM DataLayer (100% reliable)
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'form_submission',
-        'form_name': 'contact_form',
-        'form_location': 'footer_section'
-      });
-
-      // 2. Show success message & hide button
-      document.getElementById('btn-submit-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-      
-      // 3. Optional: Reset form after 3 seconds
-      setTimeout(() => {
-        contactForm.reset();
-        document.getElementById('btn-submit-form').style.display = 'block';
-        document.getElementById('form-success').style.display = 'none';
-      }, 5000);
+  
+// Form Submission Tracking - Contact Form
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Push event to GTM DataLayer (MUST match your trigger name)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'form_submission',
+      'form_name': 'contact_form',
+      'form_location': 'contact_section'
     });
-  }
+
+    // UI Feedback
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    
+    btn.disabled = true;
+    btn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
+    
+    setTimeout(() => {
+      btn.textContent = currentLang === 'pt' ? 'Mensagem enviada!' : 'Message sent!';
+      btn.style.background = '#10b981';
+      contactForm.reset();
+      
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = originalText;
+        btn.style.background = '';
+      }, 4000);
+    }, 1500);
+  });
+}
 </script>
 
 </body>
